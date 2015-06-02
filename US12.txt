@@ -1,0 +1,1 @@
+learn about using JQuery and AJAX to make functional windows on top of map
