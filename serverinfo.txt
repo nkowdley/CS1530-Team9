@@ -1,0 +1,17 @@
+Server DNS:
+http://ec2-52-26-93-134.us-west-2.compute.amazonaws.com/
+
+    *Server source is the github repo, thus to view any files on it access using path of the repo, 
+     i.e. http://ec2-52-26-93-134.us-west-2.compute.amazonaws.com/source/index.html to access the main 
+     page
+     
+To add to server:
+-I am attempting to make it so repo changes are automatically propagated to the server, but this requires
+ adding a webhook to the repo (to the http://ec2-52-26-93-134.us-west-2.compute.amazonaws.com/auto.php file
+ which is on the servers gitignore), which should call a script cuasing the server to pull. For the time 
+ being I made a http://ec2-52-26-93-134.us-west-2.compute.amazonaws.com/pull.php page which will cuase the 
+ server to pull.
+ 
+-I also will make accounts for everyone and grant any necessary permissions, allowing for ssh and ftp
+ access for any purpose. These must be password protected. If any one wants root access, ask me and I 
+ will provide the .pem key.
