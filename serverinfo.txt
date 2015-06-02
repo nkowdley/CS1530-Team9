@@ -6,6 +6,7 @@ http://ec2-52-26-93-134.us-west-2.compute.amazonaws.com/
      page
      
 To add to server:
+** Not currently working **
 -I am attempting to make it so repo changes are automatically propagated to the server, but this requires
  adding a webhook to the repo (to the http://ec2-52-26-93-134.us-west-2.compute.amazonaws.com/auto.php file
  which is on the servers gitignore), which should call a script cuasing the server to pull. For the time 
