@@ -1,0 +1,4 @@
+profiles
+	1-facebook login
+		profile pic, name, friends, request to post
+	2-email and password

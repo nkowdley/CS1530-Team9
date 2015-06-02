@@ -1,0 +1,1 @@
+Database- one for user info; one for photos and metadata 

@@ -1,0 +1,7 @@
+photos
+-view
+   -by geolocation
+   -by list
+-upload
+   -with/without location
+   -choose location if not in metadata
