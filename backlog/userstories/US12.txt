@@ -1,5 +1,0 @@
-User Story #12
-As a developer, I would like to use JQuery and AJAX in order to make windows on the map and make a clean UI, so that users enjoy using the site.
-
-To Do:
-learn about using JQuery and AJAX to make functional windows on top of map
