@@ -9,6 +9,7 @@
     <!-- Includes -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYRCZ4qnZv2QpyPCbSX7vP1ZiKLsuX9gQ"></script> <!-- API KEY INVALID FOR EC2 INSTANCE -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="JS/maps.js"></script>
     
     <!-- Page Logic -->
     <script type="text/javascript">
@@ -16,19 +17,6 @@
     {
         gotoMap();
     });
-    
-    //Function will cuase the display to go to "Map View", as of now just google map location
-    function gotoMap() 
-    {
-        //Sets zoom and location map initially focused on. API examples defaults as of now
-        var mapOptions = {
-          center: { lat: 40.441983, lng: -79.957351},
-          zoom: 10
-        };
-        
-        //Locally declares a map variable
-        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    }
     </script>	
     
     <link href="CSS/style.css?<?php echo time() ?>" rel="stylesheet" type="text/css"> <!-- hack to stop chrome from cacheing CSS cuasing immediate changes to not be displayed -->
