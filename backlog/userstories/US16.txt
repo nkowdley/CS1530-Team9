@@ -1,0 +1,3 @@
+User Story #16
+
+As a user, I want to be able to make text posts with the location of the post, so that I can create content for people to see.
