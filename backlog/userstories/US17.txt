@@ -1,0 +1,5 @@
+User Story #17:
+As a tester, I want a large number of photos with location data, so that I can verify locations are pulled correctly from photos.
+
+To Do:
+Get images
