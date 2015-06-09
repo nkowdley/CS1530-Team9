@@ -1,1 +1,5 @@
+User Story #7:
+As a user, I want a translator app, so that I can read posts from people all over the map.
+
+To Do:
 translator

@@ -1,1 +1,7 @@
-clean up UI 
+User Story #11:
+
+As a user, I want a clean and easy to understand User Interface, so that I can easily use this site, without needing help.
+
+To Do:
+UI
+UX

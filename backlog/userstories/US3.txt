@@ -1,4 +1,10 @@
+User Story #3
+
+As a user, I want the ability to upload photos, so that I can share cool pictures with their locations for my friends to see.
+
+To Do:
 photos
+//the following are covered in later US
 -view
    -by geolocation
    -by list

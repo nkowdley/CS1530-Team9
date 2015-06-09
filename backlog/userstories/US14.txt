@@ -1,0 +1,5 @@
+User Story #14:
+As a user,  I want to select the location of my post, so that I can choose where it gets displayed, if no location is able to be determined.
+
+To Do:
+choose location if not in metadata

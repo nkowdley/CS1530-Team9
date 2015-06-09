@@ -1,1 +1,5 @@
+User Story #8:
+As a user, I want the ability to convert currency easily, so that I can determine costs if I see them for places all around the map.
+
+To Do:
 currency converter

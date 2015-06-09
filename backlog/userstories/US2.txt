@@ -1,1 +1,5 @@
-Database- one for user info; one for photos and metadata 
+User Story #2
+As a developer, I want a backend database so that I can easily store and retrieve data about posts.
+
+To Do:
+Database- one for user info; one for photos and metadata

@@ -1,0 +1,5 @@
+User Story #15
+As a user, I want my location to automatically be determined, so that I do not have to select a location each time I post.
+
+To Do:
+Get metadata from photos, ask browser for location

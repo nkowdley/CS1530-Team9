@@ -1,1 +1,6 @@
+User Story #6
+
+As a user, I want the ability to initiate a chat with my online friends, so that I can communicate on one platform.
+
+To Do:
 chat

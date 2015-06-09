@@ -1,3 +1,8 @@
+User Story #4
+
+As a user, I want to be able to log onto the site with a profile, in order to save my settings and preferences.
+
+To Do:
 profiles
 	1-facebook login
 		profile pic, name, friends, request to post

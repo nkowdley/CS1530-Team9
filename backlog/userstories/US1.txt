@@ -1,1 +1,5 @@
+User Story #1
+As a user, I want to have a Maps interface with locations of posts marked, so that I am able to view where my friends are when they make posts.
+
+To Do:
 google maps api

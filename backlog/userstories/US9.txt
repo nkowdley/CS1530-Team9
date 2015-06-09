@@ -1,1 +1,5 @@
+User Story #9:
+As a user, I want to quickly view the weather, so that I can make plans based on what occurs on the map.
+
+To Do:
 quick weather
