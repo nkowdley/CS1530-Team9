@@ -9,4 +9,6 @@ function gotoMap()
     
     //Locally declares a map variable
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    
+    return map;
 }
