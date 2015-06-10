@@ -1,0 +1,6 @@
+User Story #19:
+
+As a developer, I want clear UI/UX specifications, so that I can make the user experience constant, and make the UI clear.
+
+To Do:
+Create UI specs
