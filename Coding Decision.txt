@@ -1,0 +1,9 @@
+Coding Decisions:
+
+Maps Demo showing off access of the Google Maps API was a very bare bones implementation, merely bringing up the map at base.
+This is done just to show ability to access the API. The API key is in the code itself, which is horrible practice and will be fixed later.
+I didn't bother with initially using best practices as the API key is restricted to use on the AWS server URL only, so it should not be a 
+problem in the short term.
+
+The test Demo is a simple assert to show use of Qunit. Also included is a test for the Map demo, testing the gotoMap function, which should return
+a Google Map object, and checks it for true, as if the call failed it should return null.
