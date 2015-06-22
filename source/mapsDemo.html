@@ -7,7 +7,7 @@
 <html>
 <head>    
     <!-- Includes -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYRCZ4qnZv2QpyPCbSX7vP1ZiKLsuX9gQ"></script> <!-- API KEY INVALID FOR EC2 INSTANCE -->
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=SET_TO_TRUE_OR_FALSE"></script> <!-- API KEY INVALID FOR EC2 INSTANCE -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="JS/maps.js"></script>
     
@@ -23,6 +23,7 @@
 </head>
 
 <body>
+    <input id="search-box" class="controls" type="text">
     <div id="map-canvas"></div>
 </body>
 </html>

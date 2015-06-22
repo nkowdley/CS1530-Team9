@@ -1,17 +1,10 @@
-//Indcludes
-var script = document.createElement('script');
-script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js';
-script.type = 'text/javascript';
-document.getElementsByTagName('head')[0].appendChild(script);
+//Global initializations
+var markers = [];
 
-script = document.createElement('script');
-script.src = '//maps.googleapis.com/maps/api/js?key=AIzaSyCYRCZ4qnZv2QpyPCbSX7vP1ZiKLsuX9gQ"';
-script.type = 'text/javascript';
-document.getElementsByTagName('head')[0].appendChild(script);
-
-//Function will cuase the display to go to "Map View", as of now just google map location
+//Initialize map to default location and link up search box
 function gotoMap() 
 {
+    //TODO: Current default is just some place over pgh, change to geolocation
     //Sets zoom and location map initially focused on. API examples defaults as of now
     var mapOptions = {
       center: { lat: 40.441983, lng: -79.957351},
@@ -21,5 +14,51 @@ function gotoMap()
     //Locally declares a map variable
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     
+    //Create the search box and link it to the UI element.
+    var input = (document.getElementById('search-box'));
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    var searchBox = new google.maps.places.SearchBox(input);
+    
+    
+    //Listen for the event fired when the user selects an item from the
+    //pick list. Retrieve the matching places for that item.
+    google.maps.event.addListener(searchBox, 'places_changed', function() 
+    {
+        //Get results of search
+        var places = searchBox.getPlaces();
+
+        if (places.length == 0) 
+            return;
+       
+        //Init bounds
+        var bounds = new google.maps.LatLngBounds();
+        
+        //Establish location for results of search selection
+        for (var i = 0, place; place = places[i]; i++) 
+        {
+            var image = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25)
+            };
+
+            bounds.extend(place.geometry.location);
+        }
+        
+        //Set map location/zoom
+        map.fitBounds(bounds);
+    });
+   
+
+    // Bias the SearchBox results towards places that are within the bounds of the
+    // current map's viewport.
+    google.maps.event.addListener(map, 'bounds_changed', function() {
+    var bounds = map.getBounds();
+    searchBox.setBounds(bounds);
+    });
+        
     return map;
 }
