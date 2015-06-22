@@ -1,8 +1,6 @@
-##Format Notes##
-##This list is in the format of name-points-priority##
-
-List of User Stories:
-
+##List of User Stories:##
+*Format Notes*
+*This list is in the format of name-points-priority*
 US1-16-1
 US2-8-2
 US3-8-4
