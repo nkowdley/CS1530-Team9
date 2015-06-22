@@ -1,7 +1,7 @@
 ##List of User Stories:##
 *Format Notes*
 *This list is in the format of name-points-priority*
-|Name|Points|Priority|Sprint #|
+| Name | Points | Priority | Sprint # |
 | ---- | ---- | ---- | ---- |
 US1 | 16 | 1 | 1 |
 US2 | 8 | 2 | |
