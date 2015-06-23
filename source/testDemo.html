@@ -2,7 +2,7 @@
 <html>
 <head>
   <!-- Includes for testing -->
-  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYRCZ4qnZv2QpyPCbSX7vP1ZiKLsuX9gQ"></script> --> <!-- API KEY FOR EC2 INSTANCE -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGPKWUeoHvSXqwmJbwdK6whxA8jvfcq1M"></script> --> <!-- API KEY FOR EC2 INSTANCE -->
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=SET_TO_TRUE_OR_FALSE"></script> <!-- API KEY FOR LOCAL TESTING -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="JS/maps.js"></script>
@@ -14,6 +14,8 @@
 <body>
   <div id="qunit"></div>
   <div id="qunit-fixture"></div>
+  <!-- Divs needed for testing -->
+  <div id="map-canvas" style="display: none;"></div>
   <script src="//code.jquery.com/qunit/qunit-1.18.0.js"></script>
   <script src="JS/tests.js"></script>
 </body>
