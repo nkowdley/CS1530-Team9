@@ -12,6 +12,14 @@ html, body, #map-canvas
     margin: 0 auto;
 }
 
+#content 
+{
+    height: 100%; 
+    width: 100%;
+}
+
+
+
 .controls {
 margin-top: 16px;
 border: 1px solid transparent;
@@ -36,4 +44,8 @@ width: 400px;
 
 #search-box:focus {
 border-color: #4d90fe;
+}
+
+#navbar {
+
 }

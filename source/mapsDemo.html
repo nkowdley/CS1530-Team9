@@ -6,10 +6,12 @@
 -->
 <html>
 <head>    
-    <!-- Includes -->
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=SET_TO_TRUE_OR_FALSE"></script> <!-- API KEY INVALID FOR EC2 INSTANCE -->
+    <!-- JS Includes -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYRCZ4qnZv2QpyPCbSX7vP1ZiKLsuX9gQ"></script> --> <!-- API KEY FOR EC2 INSTANCE -->
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=SET_TO_TRUE_OR_FALSE"></script> <!-- API KEY FOR LOCAL TESTING -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="JS/maps.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     
     <!-- Page Logic -->
     <script type="text/javascript">
@@ -19,11 +21,17 @@
     });
     </script>	
     
+    <!-- CSS Includes -->
     <link href="CSS/style.css?<?php echo time() ?>" rel="stylesheet" type="text/css"> <!-- hack to stop chrome from cacheing CSS cuasing immediate changes to not be displayed -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
-
 <body>
-    <input id="search-box" class="controls" type="text">
-    <div id="map-canvas"></div>
+    <div class="navbar navbar-inverse "> 
+
+    </div>
+    <div id="content" class="container">
+        <input id="search-box" class="controls" type="text">
+        <div id="map-canvas"></div>
+    </div>
 </body>
 </html>
