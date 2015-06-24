@@ -3,19 +3,22 @@
 <head>
   <!-- Includes for testing -->
   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGPKWUeoHvSXqwmJbwdK6whxA8jvfcq1M"></script> --> <!-- API KEY FOR EC2 INSTANCE -->
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=SET_TO_TRUE_OR_FALSE"></script> <!-- API KEY FOR LOCAL TESTING -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?libraries=places,location&sensor=SET_TO_TRUE_OR_FALSE"></script> --><!-- API KEY FOR LOCAL TESTING -->
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=SET_TO_TRUE_OR_FALSE"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="JS/maps.js"></script>
   
   <meta charset="utf-8">
   <title>QUnit Example</title>
   <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.18.0.css">
+
 </head>
 <body>
   <div id="qunit"></div>
   <div id="qunit-fixture"></div>
   <!-- Divs needed for testing -->
-  <div id="map-canvas" style="display: none;"></div>
+  <div id="map-canvas"></div>
+  <input id="search-box" class="controls" type="text">
   <script src="//code.jquery.com/qunit/qunit-1.18.0.js"></script>
   <script src="JS/tests.js"></script>
 </body>
