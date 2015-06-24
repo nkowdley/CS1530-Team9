@@ -6,7 +6,7 @@
 <body>
   <?php
 
-  $db = new mysqli('localhost', 'neel', 'password', 'CS1530');
+  $db = new mysqli('localhost', 'root', 'pass', 'CS1530');
 
   if ($db->connect_error):
     die ("Could not connect to db: " . $db->connect_error);
