@@ -29,9 +29,15 @@
 </head>
 <body>
     <div class="navbar navbar-inverse" id="navbar"> 
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-        </fb:login-button>
-        <div id="status">
+        <div class="container-fluid">
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+            </fb:login-button>
+            <div id="status">
+            </div>
+            <form id="upload_form" action="PHP/upload.php" method="post" enctype="multipart/form-data" target="upload_target">
+            File: <input name="myfile" type="file" />
+                  <input type="submit" name="submitBtn" value="Upload" />
+            </form>
         </div>
     </div>
     <div id="content" class="container">
