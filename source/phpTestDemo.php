@@ -1,4 +1,5 @@
 <?php
+require_once 'PHPUnit/Autoload.php';
 //Only meant to run on the server itself, local host configuration would likely need to be identical
 class StackTest extends PHPUnit_Framework_TestCase
 {
@@ -6,6 +7,7 @@ class StackTest extends PHPUnit_Framework_TestCase
     public function testPHPUnit()
     {
         $this->assertEquals(0, 0);
+        echo "here";
     }
 }
 ?>
