@@ -6,5 +6,5 @@
 |US16|8|3|Blaise||
 |US3|8|3|Blaise||
 |US19|4|12|Dom||
-|US5|8|6|Andrew||
-|US4|2|5|Andrew||
+|US5|8|6|Andrew|Complete|
+|US4|2|5|Andrew|Complete|
