@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <!--
-* 1530 Group 9 
+* 1530 Group 9
 * Concept Demo
 * All API keys temporary Maps: AIzaSyCYRCZ4qnZv2QpyPCbSX7vP1ZiKLsuX9gQ Facebook: 202321226570252
 -->
 <html>
-<head>    
+<head>
     <!-- JS Includes -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAGPKWUeoHvSXqwmJbwdK6whxA8jvfcq1M"></script> --> <!-- API KEY FOR EC2 INSTANCE -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=SET_TO_TRUE_OR_FALSE"></script> --><!-- API KEY INVALID FOR EC2 INSTANCE -->
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAGPKWUeoHvSXqwmJbwdK6whxA8jvfcq1M"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAGPKWUeoHvSXqwmJbwdK6whxA8jvfcq1M"></script><!--Production key-->
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBcaRb_4a8rqmrenDR-_W3sPQ37An_3fzs"></script><!--api key for local host>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="JS/maps.js"></script>
     <script src="JS/facebook.js"></script>
     <script src="JS/bootstrap.min.js"></script>
-    
+
     <!-- Page Logic -->
     <script type="text/javascript">
     $(document).ready(function()
@@ -22,13 +23,13 @@
         gotoMap();
     });
     </script>
-    
+
     <!-- CSS Includes -->
     <link href="CSS/style.css?<?php echo time() ?>" rel="stylesheet" type="text/css"> <!-- hack to stop chrome from cacheing CSS cuasing immediate changes to not be displayed -->
     <link href="CSS/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
-    <div class="navbar navbar-inverse" id="navbar"> 
+    <div class="navbar navbar-inverse" id="navbar">
         <div class="container-fluid">
             <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
             </fb:login-button>
