@@ -12,15 +12,19 @@ function uploadPic(filename)
         //Get photo coords, rest of the upload must be in callback
         getCoords(function(coords)
         {
+            //If coords are not found then exit. Should not occur with proper form validation
             if(coords == "failure")
             {
-            
+                alert("Coordinate lookup failed");  
             }
             
             //Prepare data and upload
+            //PHP SCRIPT AND THIS FUNCTION CURRENTLY ONLY HANDLE UPLOADING PHOTO ITSELF
             else
             {
                 //Need to get file and all user info needed for db entry and send to php script
+                
+                //Call PHP to upload
             }
         });
     }

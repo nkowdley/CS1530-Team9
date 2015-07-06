@@ -46,17 +46,19 @@ QUnit.test("get coords test", function(assert)
     assert.notOk(coords); 
 });
 
-//Check to see if the function properly enforces that a location must be provided
-QUnit.test("pic location validation", function(assert)
-{        
+//Test upload form validation
+QUnit.test("pic form validation", function(assert)
+{      
     //Check if no location selected fails
     $("#address").val("");
-    assert.ok(uploadPic() === "location selection failed", "location selection fail enforced");
+    assert.ok(validateUploadForm("billy.png") === "location selection failed", "location selection fail enforced");
+    
+    //Check if location but improper file fails
+    $("#address").val("Posvar"); //add proper location
+    assert.ok(validateUploadForm("billy") === "photo selection failed", "photo selection fail enforced");
     
     //Check if success when all fields included
-    $("#address").val("Posvar");
-    alert(uploadPic());
-    assert.ok(uploadPic() === "upload attempted", "location selection success enforced");
+    assert.ok(validateUploadForm("billy.png") === "success", "valid form passed");
 });
 
 //Test embeding location coords into a photo's exit data
