@@ -24,11 +24,11 @@
                 <form class="navbar-form navbar-right" id="upload_form" action="JavaScript:uploadPic()" method="post" enctype="multipart/form-data" target="upload_target">
                     <div class="form-group">
                         <span class="btn btn-success btn-file">
-                            Chose File <input name="myfile" type="file">
+                            Chose File <input id="myfile" name="myfile" type="file"> <!-- Only PNG accepted -->
                         </span>
                     </div>
                     <div class="form-group">
-                        Location: <input id="address" type="text">
+                        Location: <input id="address" name="address" type="text">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success" name="submitBtn" value="Upload">Upload</button>

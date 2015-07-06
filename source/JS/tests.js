@@ -1,3 +1,6 @@
+//Disables alerts for uneeded alerts used in certain tested functions
+window.alert = function() {};
+
 //Hello World test
 QUnit.test("hello test", function(assert) 
 {
@@ -12,6 +15,7 @@ QUnit.test("map init test", function(assert)
 });
 
 //Tests getCoords function, function should return a google location object of searched for location
+//Will ALWAYS derive a location from the contents of "address" input, even without full address
 QUnit.test("get coords test", function(assert)
 {
     var coords;
@@ -24,14 +28,33 @@ QUnit.test("get coords test", function(assert)
         assert.ok(coords.lng() == -79.95383900000002 && coords.lat() == 40.4417002, "Posvar coords correctly found");
     });
     
-    //Need to expect 0 for asychronous acceptenc
-    expect(0);
+    //Due to asychronous call, this should be undefined
+    assert.notOk(coords); 
 });
 
-//Check to see if the function properly adds db entry and photo to server
-QUnit.test("pic upload test", function(assert)
-{
+//Check to see if the function properly enforces all fields to be filled
+QUnit.test("pic upload validation", function(assert)
+{    
+    //CAN NOT PROGRAMMITCALLY SET A FILE NAME, THUS VALIDATION WILL NOT BE TESTED
+    //Check if no photo selected fails
+    /*$("#myfile").val("photo");
+    $("#address").val("Posvar");
+    assert.ok(uploadPic() === "photo selection failed", "photo selection enforced");*/
+    
+    //Check if no location selected fails
+    $("#myfile").val("photo.png");
+    $("#address").val("Posvar");
+    assert.ok(uploadPic() === "location selection failed", "location selection enforced");
+    
+    //Check if getCoords fails
+    
+    //Check if success when all fields included
+});
 
+//Check to see if a photo will be properly uploaded to server
+QUnit.test("pic upload success", function(assert)
+{
+    
 });
 
 //Test maps api search functionality (broked)
