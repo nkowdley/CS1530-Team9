@@ -82,6 +82,9 @@ function getCoords(callback)
         } 
         
         else
+        {
+            callback("failure");
             alert("Geocode was not successful for the following reason: " + status);
+        }
     });
 }

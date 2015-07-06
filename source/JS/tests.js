@@ -1,5 +1,5 @@
 //Disables alerts for uneeded alerts used in certain tested functions
-window.alert = function() {};
+//window.alert = function() {};
 
 //Hello World test
 QUnit.test("hello test", function(assert) 
@@ -21,11 +21,20 @@ QUnit.test("get coords test", function(assert)
     var coords;
     $("#address").val("Posvar");
     
-    //Asychronous getCoords();
+    //Asychronous getCoords() success test
     getCoords(function(coords)
     {
         //Should return 40.4417002 lat and -79.95383900000002 lng
         assert.ok(coords.lng() == -79.95383900000002 && coords.lat() == 40.4417002, "Posvar coords correctly found");
+    });
+    
+    $("#address").val("-");
+    
+    //Asychronous getCoords() failure test
+    getCoords(function(coords)
+    {
+        //Should return 40.4417002 lat and -79.95383900000002 lng
+        assert.ok(coords == "failure", "Coord failure detected");
     });
     
     //Due to asychronous call, this should be undefined
@@ -42,11 +51,12 @@ QUnit.test("pic upload validation", function(assert)
     assert.ok(uploadPic() === "photo selection failed", "photo selection enforced");*/
     
     //Check if no location selected fails
-    $("#myfile").val("photo.png");
-    $("#address").val("Posvar");
+    $("#address").val("");
     assert.ok(uploadPic() === "location selection failed", "location selection enforced");
     
     //Check if getCoords fails
+    $("#address").val("-"); //Location is selected, but getCoords will fail with this input
+    assert.ok(uploadPic() === "getCoords failed", "getCoords success enforced");
     
     //Check if success when all fields included
 });
@@ -54,7 +64,7 @@ QUnit.test("pic upload validation", function(assert)
 //Check to see if a photo will be properly uploaded to server
 QUnit.test("pic upload success", function(assert)
 {
-    
+    //Possibly untestable due to inability to programmatically set file name
 });
 
 //Test maps api search functionality (broked)
@@ -64,13 +74,12 @@ QUnit.test("map search test", function(assert)
     gotoMap();
     
     //Search for posvar
-   
     $("#search-box").val("Posvar"); 
     $("#search-box").click(); 
     
     
     var searchBox = new google.maps.places.SearchBox(document.getElementById('search-box'));
-    //alert(searchBox.getPlaces());
+    alert(place.geometry.location);
     var place = searchBox.getPlaces()[0];
     map.setCenter(place.geometry.location);
     
@@ -80,11 +89,5 @@ QUnit.test("map search test", function(assert)
     center: { lat: 40.441983, lng: -79.957351},
     zoom: 10
     };
-    
-    //Create latlng object with posvar coords to compare against
-    var expected = new google.maps.LatLng(0.441643, -79.953818, false);
-    var result = new google.maps.LatLng();
-    result = map.getCenter();
-    //alert(result.lat());
     assert.ok(map.getCenter() == expected , "Map correctly centered on posvar");
 });

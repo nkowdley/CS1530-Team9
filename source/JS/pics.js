@@ -17,19 +17,20 @@ function uploadPic()
         alert("Must provide .png file to be uploaded");
         return "photo selection failed";
     }
-    
-    //Get photo coords, if not found alert and exit
+
+    //Get photo coords, rest of the upload must be in callback
     getCoords(function(coords)
     {
-        if(!coords)
+        if(coords == "failure")
         {
             alert("Coordinates could not be found");
             return "getCoords failed";
         }
+        
+        //Prepare data and upload
+        else
+        {
+            
+        }
     });
-    
-    //Send data to php script to upload
-    
-    
-    return "success"; //Return true if nothing went wrong
 }
