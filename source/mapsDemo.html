@@ -21,14 +21,14 @@
                 </ul>
             
                 
-                <form class="navbar-form navbar-right" id="upload_form" action="PHP/upload.php" method="post" enctype="multipart/form-data" target="upload_target">
+                <form class="navbar-form navbar-right" id="upload_form" action="JavaScript:uploadPic()" method="post" enctype="multipart/form-data" target="upload_target">
                     <div class="form-group">
                         <span class="btn btn-success btn-file">
                             Chose File <input name="myfile" type="file">
                         </span>
                     </div>
                     <div class="form-group">
-                        <input id="address" type="text">
+                        Location: <input id="address" type="text">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success" name="submitBtn" value="Upload">Upload</button>
@@ -48,6 +48,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBcaRb_4a8rqmrenDR-_W3sPQ37An_3fzs"></script><!--api key for local host-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="JS/maps.js"></script>
+    <script src="JS/pics.js"></script>
     <script src="JS/facebook.js"></script>
     <script src="JS/bootstrap.min.js"></script>
     

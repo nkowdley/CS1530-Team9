@@ -1,18 +1,20 @@
 //Global initializations
 var markers = [];
+var map;
+var mapOptions;
 
 //Initialize map to default location and link up search box
 function gotoMap() 
 {
     //TODO: Current default is just some place over pgh, change to geolocation
     //Sets zoom and location map initially focused on. API examples defaults as of now
-    var mapOptions = {
+    mapOptions = {
       center: { lat: 40.441983, lng: -79.957351},
       zoom: 10
     };
     
     //Locally declares a map variable
-    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     
     //Create the search box and link it to the UI element.
     var input = (document.getElementById('search-box'));
@@ -53,12 +55,33 @@ function gotoMap()
     });
    
 
-    // Bias the SearchBox results towards places that are within the bounds of the
-    // current map's viewport.
+    //Bias the SearchBox results towards places that are within the bounds of the current map's viewport.
     google.maps.event.addListener(map, 'bounds_changed', function() {
     var bounds = map.getBounds();
     searchBox.setBounds(bounds);
     });
         
     return map;
+}
+
+//Gets the lat/lng coordinates from text box
+//Asychronous due to call to geocoder
+function getCoords(callback)
+{
+    //Local vars
+    var geocoder;
+    geocoder = new google.maps.Geocoder();
+
+    var address = document.getElementById("address").value;
+    geocoder.geocode( { 'address': address}, function(results, status) 
+    {
+        if (status == google.maps.GeocoderStatus.OK) 
+        {
+            //alert(results[0].geometry.location);
+            callback(results[0].geometry.location);
+        } 
+        
+        else
+            alert("Geocode was not successful for the following reason: " + status);
+    });
 }
