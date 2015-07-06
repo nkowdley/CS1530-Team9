@@ -1,3 +1,8 @@
+/*
+ * No automated tests for functions reliant on file selction due to JavaScript security features
+ *
+ */
+
 //Disables alerts for uneeded alerts used in certain tested functions
 //window.alert = function() {};
 
@@ -41,31 +46,26 @@ QUnit.test("get coords test", function(assert)
     assert.notOk(coords); 
 });
 
-//Check to see if the function properly enforces all fields to be filled
-QUnit.test("pic upload validation", function(assert)
-{    
-    //CAN NOT PROGRAMMITCALLY SET A FILE NAME, THUS VALIDATION WILL NOT BE TESTED
-    //Check if no photo selected fails
-    /*$("#myfile").val("photo");
-    $("#address").val("Posvar");
-    assert.ok(uploadPic() === "photo selection failed", "photo selection enforced");*/
-    
+//Check to see if the function properly enforces that a location must be provided
+QUnit.test("pic location validation", function(assert)
+{        
     //Check if no location selected fails
     $("#address").val("");
-    assert.ok(uploadPic() === "location selection failed", "location selection enforced");
-    
-    //Check if getCoords fails
-    $("#address").val("-"); //Location is selected, but getCoords will fail with this input
-    assert.ok(uploadPic() === "getCoords failed", "getCoords success enforced");
+    assert.ok(uploadPic() === "location selection failed", "location selection fail enforced");
     
     //Check if success when all fields included
+    $("#address").val("Posvar");
+    alert(uploadPic());
+    assert.ok(uploadPic() === "upload attempted", "location selection success enforced");
 });
 
-//Check to see if a photo will be properly uploaded to server
-QUnit.test("pic upload success", function(assert)
+//Test embeding location coords into a photo's exit data
+QUnit.test("coord embed test", function(assert)
 {
-    //Possibly untestable due to inability to programmatically set file name
+    var coords = new google.maps.LatLng(40.441983, -79.957351);
+    //embedCoords(, coords)
 });
+
 
 //Test maps api search functionality (broked)
 QUnit.test("map search test", function(assert) 
