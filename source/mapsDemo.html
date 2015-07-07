@@ -21,10 +21,10 @@
                 </ul>
             
                 
-                <form class="navbar-form navbar-right" id="upload_form" action="JavaScript:uploadPic($('#myfile').val())">
+                <form class="navbar-form navbar-right" id="upload-form" name="upload-form" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <span class="btn btn-success btn-file">
-                            Chose File <input id="myfile" name="myfile" type="file" class="btn btn-success">
+                            Chose File <input type="file" id="myfile" name="myfile" class="btn btn-success"/>
                         </span>
                     </div>
                      
@@ -32,7 +32,7 @@
                         Location <input id="address" type="text">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success" name="submitBtn" value="Upload">Upload</button>
+                        <button type="submit" id="file-button" class="btn btn-success" name="submitBtn" value="Upload">Upload</button>
                     </div>
                 </form>
                 <div id="status"></div>

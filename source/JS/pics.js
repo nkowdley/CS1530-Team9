@@ -1,14 +1,18 @@
+//Listener for form submission
+$("form[name=upload-form]").submit(function(){
+    uploadPic($("#myfile").val());
+    return false;
+});
+
 //Prepare a photo for upload onto server and db
+//Handles physical upload to file and will be limited mostly to live testing
 function uploadPic(filename)
 {
     alert(filename);
     var success = validateUploadForm(filename);
 
     if(success === "success")
-    {
-        //Hack used for live testing
-        alert("upload attempted");
-        
+    {        
         //Get photo coords, rest of the upload must be in callback
         getCoords(function(coords)
         {
@@ -24,7 +28,32 @@ function uploadPic(filename)
             {
                 //Need to get file and all user info needed for db entry and send to php script
                 
-                //Call PHP to upload
+                //Get upload form data
+                var files = $('#myfile')[0];               
+                var data = new FormData();                
+                var url =  "PHP/uploadPhoto.php";
+                var xhr = new XMLHttpRequest();  
+
+                jQuery.each(files.files, function (i, file) {
+                    data.append("myfile", file)
+                });                
+                xhr.open('POST', url, true);
+                xhr.upload.onprogress = function(e) {    
+                };    
+
+                xhr.upload.onerror = function(e){
+                };
+
+                xhr.addEventListener('readystatechange', function(e) {
+                if( this.readyState === 4 ) 
+                {
+                    var result = this.responseText;
+                    alert(result);
+                    $('#myfile').val(null);
+                }
+                });
+                xhr.send(data);
+
             }
         });
     }
@@ -50,6 +79,7 @@ function validateUploadForm(filename)
     return "success";
 }
 
+//Unimplmented
 //Embeds the Lat/Lng position got from the google api's into a photos exif tags
 function embedCoords(file, coords)
 {
