@@ -8,7 +8,7 @@ class StackTest extends PHPUnit_Framework_TestCase
     {
         echo "here<br>";
         $result = $this->assertEquals(0, 0);
-        if($result){
+        if(!$result){
             echo 'it worked';
         }
     }
