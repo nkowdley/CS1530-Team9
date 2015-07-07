@@ -13,7 +13,7 @@
   require_once 'PHPUnit/Autoload.php';
 
   class dbTest extends PHPUnit_Framework_TestCase {
-      function tester ()
+      public function tester ()
       {
           $db = new mysqli('localhost', 'root', 'pass', 'CS1530');
 
@@ -27,7 +27,7 @@
           $result = $db->query("create table posts ($fields[0] int, $fields[1] char(30) not null, $fields[2] char(30) not null, $fields[3] char(30), $fields[4] char(30))") or die ("Invalid: " . $db->error);
 
           //$db->query("INSERT INTO posts ($fields[0], $fields[1], $fields[2], $fields[3], $fields[4])VALUES($vals[0], $vals[1], $vals[2], $vals[3], $vals[4])") or die ("Invalid: " . $db->error);
-          $db->query('INSERT INTO Posts (id, user, type, content, location)VALUES("1", "neel","text","hello world", "Pittsburgh, PA")') or die ("Invalid: " . $db->error);
+          $db->query('INSERT INTO Posts (id, user, type, content, location) VALUES("1", "neel","text","hello world", "Pittsburgh, PA")') or die ("Invalid: " . $db->error);
 
           //echo "<h3>Here is your data:</h3>";
           $query = "select * from posts;";
