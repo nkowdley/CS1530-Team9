@@ -16,8 +16,8 @@
   $result = $db->query("drop table Posts");
   $result = $db->query("drop table Users");
   //make tables
-  $result = $db->query("create table Posts (id int, user char(30) not null, type char(30) not null, content char(30), location char(30))") or die ("Invalid: " . $db->error);//Posts table
-  $result = $db->query("create table Users (id int, user char(30) not null, interests char(100) not null, education char(100))") or die ("Invalid: " . $db->error);//Users Table
+  $result = $db->query("create table Posts (id int, user char(30) not null, type char(30) not null, content char(30), location char(30), PRIMARY KEY (user)))") or die ("Invalid: " . $db->error);//Posts table
+  $result = $db->query("create table Users (id int, user char(30) not null, interests char(100) not null, education char(100), PRIMARY KEY (user))") or die ("Invalid: " . $db->error);//Users Table
 
   //dummy data for testing
   $db->query('INSERT INTO Posts (id, user, type, content, location)VALUES("1", "neel","text","hello world", "Pittsburgh, PA")') or die ("Invalid: " . $db->error); //test post
