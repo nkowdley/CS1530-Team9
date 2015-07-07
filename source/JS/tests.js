@@ -3,8 +3,8 @@
  *
  */
 
-//Disables alerts for uneeded alerts used in certain tested functions
-//window.alert = function() {};
+//Hack that disables alerts for uneeded alerts used in certain tested functions
+window.alert = function() {};
 
 //Hello World test
 QUnit.test("hello test", function(assert) 
@@ -36,8 +36,7 @@ QUnit.test("get coords test", function(assert)
     $("#address").val("-");
     
     //Asychronous getCoords() failure test
-    getCoords(function(coords)
-    {
+    getCoords(function(coords){
         //Should return 40.4417002 lat and -79.95383900000002 lng
         assert.ok(coords == "failure", "Coord failure detected");
     });
@@ -59,6 +58,17 @@ QUnit.test("pic form validation", function(assert)
     
     //Check if success when all fields included
     assert.ok(validateUploadForm("billy.png") === "success", "valid form passed");
+});
+
+//Test that uploadPic() successfully calls PHP upload script
+QUnit.test("uploadPic() prelim test", function(assert)
+{    
+    var result;
+    uploadPic("sample.png", function(result){
+        assert.ok(result === "complete", "uploadPic() ran through");
+    });
+    
+    assert.notOk(result, "Result should be undefined");
 });
 
 //Test embeding location coords into a photo's exit data

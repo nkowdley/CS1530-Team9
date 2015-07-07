@@ -1,14 +1,13 @@
 //Listener for form submission
 $("form[name=upload-form]").submit(function(){
-    uploadPic($("#myfile").val());
+    uploadPic($("#myfile").val(), function(){});
     return false;
 });
 
 //Prepare a photo for upload onto server and db
 //Handles physical upload to file and will be limited mostly to live testing
-function uploadPic(filename)
+function uploadPic(filename, callback) //callback for testing
 {
-    alert(filename);
     var success = validateUploadForm(filename);
 
     if(success === "success")
@@ -20,6 +19,7 @@ function uploadPic(filename)
             if(coords == "failure")
             {
                 alert("Coordinate lookup failed");  
+                return "failure";
             }
             
             //Prepare data and upload
@@ -34,16 +34,21 @@ function uploadPic(filename)
                 var url =  "PHP/uploadPhoto.php";
                 var xhr = new XMLHttpRequest();  
 
+                //Add files to dataform 
                 jQuery.each(files.files, function (i, file) {
                     data.append("myfile", file)
-                });                
+                });     
+                        
+                //Using xhr cuase undertermined issue with jquery ajax
                 xhr.open('POST', url, true);
                 xhr.upload.onprogress = function(e) {    
                 };    
 
                 xhr.upload.onerror = function(e){
                 };
-
+                
+                
+                //Completion listener
                 xhr.addEventListener('readystatechange', function(e) {
                 if( this.readyState === 4 ) 
                 {
@@ -53,10 +58,12 @@ function uploadPic(filename)
                 }
                 });
                 xhr.send(data);
-
+                callback("complete");
             }
         });
     }
+    
+    return "failure"
 }
 
 function validateUploadForm(filename)
@@ -84,7 +91,7 @@ function validateUploadForm(filename)
 function embedCoords(file, coords)
 {
     //Create a file reader
-    var fileReader = new FileReader;
+    var fr = new FileReader();
     
     fr.onloadend = function() //When ready
     {
