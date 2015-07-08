@@ -7,6 +7,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=SET_TO_TRUE_OR_FALSE"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="JS/maps.js"></script>
+  <script src="JS/pics.js"></script>
   
   <meta charset="utf-8">
   <title>QUnit Example</title>
@@ -19,6 +20,19 @@
   <!-- Divs needed for testing -->
   <div id="map-canvas"></div>
   <input id="search-box" class="controls" type="text">
+    <form class="navbar-form navbar-right" id="upload_form" action="JavaScript:uploadPic()" method="post" enctype="multipart/form-data" target="upload_target">
+    <div class="form-group">
+    <span class="btn btn-success btn-file">
+        Chose File <input id="myfile" name="myfile" type="file">
+    </span>
+    </div>
+    <div class="form-group">
+    Location: <input id="address" type="text">
+    </div>
+    <div class="form-group">
+    <button type="submit" class="btn btn-success" name="submitBtn" value="Upload">Upload</button>
+    </div>
+    </form>
   <script src="//code.jquery.com/qunit/qunit-1.18.0.js"></script>
   <script src="JS/tests.js"></script>
 </body>
