@@ -64,9 +64,10 @@ function gotoMap()
     return map;
 }
 
-//Gets the lat/lng coordinates from text box
+//Gets the lat/lng coordinates from text box. As it pulls directly from the text box, only call when form is validated.
+//Returns a google maps api geomety.location object
 //Asychronous due to call to geocoder
-function getCoords(callback)
+function getPicCoords(callback)
 {
     //Local vars
     var geocoder;

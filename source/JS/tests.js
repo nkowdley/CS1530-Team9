@@ -19,15 +19,15 @@ QUnit.test("map init test", function(assert)
         assert.ok(result, "gotoMap() returned a map obj that evalutes to true");
 });
 
-//Tests getCoords function, function should return a google location object of searched for location
+//Tests getPicCoords function, function should return a google location object of searched for location
 //Will ALWAYS derive a location from the contents of "address" input, even without full address
 QUnit.test("get coords test", function(assert)
 {
     var coords;
     $("#address").val("Posvar");
     
-    //Asychronous getCoords() success test
-    getCoords(function(coords)
+    //Asychronous getPicCoords() success test
+    getPicCoords(function(coords)
     {
         //Should return 40.4417002 lat and -79.95383900000002 lng
         assert.ok(coords.lng() == -79.95383900000002 && coords.lat() == 40.4417002, "Posvar coords correctly found");
@@ -35,8 +35,8 @@ QUnit.test("get coords test", function(assert)
     
     $("#address").val("-");
     
-    //Asychronous getCoords() failure test
-    getCoords(function(coords){
+    //Asychronous getPicCoords() failure test
+    getPicCoords(function(coords){
         //Should return 40.4417002 lat and -79.95383900000002 lng
         assert.ok(coords == "failure", "Coord failure detected");
     });
@@ -54,7 +54,7 @@ QUnit.test("pic form validation", function(assert)
     
     //Check if location but improper file fails
     $("#address").val("Posvar"); //add proper location
-    assert.ok(validateUploadForm("billy") === "photo selection failed", "photo selection fail enforced");
+    assert.ok(validateUploadForm("billy") === "pic selection failed", "pic selection fail enforced");
     
     //Check if success when all fields included
     assert.ok(validateUploadForm("billy.png") === "success", "valid form passed");
@@ -71,7 +71,7 @@ QUnit.test("uploadPic() prelim test", function(assert)
     assert.notOk(result, "Result should be undefined");
 });
 
-//Test embeding location coords into a photo's exit data
+//Test embeding location coords into a pic's exit data
 QUnit.test("coord embed test", function(assert)
 {
     var coords = new google.maps.LatLng(40.441983, -79.957351);
