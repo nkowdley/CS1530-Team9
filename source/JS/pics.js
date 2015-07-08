@@ -4,16 +4,17 @@ $("form[name=upload-form]").submit(function(){
     return false;
 });
 
-//Prepare a photo for upload onto server and db
+//Prepare a pic for upload onto server and db
 //Handles physical upload to file and will be limited mostly to live testing
+//Asynchronous call to getPicCoords makes function asynchronous
 function uploadPic(filename, callback) //callback for testing
 {
     var success = validateUploadForm(filename);
 
     if(success === "success")
     {        
-        //Get photo coords, rest of the upload must be in callback
-        getCoords(function(coords)
+        //Get pic coords, rest of the upload must be in callback
+        getPicCoords(function(coords) //coords is a google maps api object
         {
             //If coords are not found then exit. Should not occur with proper form validation
             if(coords == "failure")
@@ -23,21 +24,30 @@ function uploadPic(filename, callback) //callback for testing
             }
             
             //Prepare data and upload
-            //PHP SCRIPT AND THIS FUNCTION CURRENTLY ONLY HANDLE UPLOADING PHOTO ITSELF
+            //TODO: pack in user info and lat/lng of the pic
             else
             {
-                //Need to get file and all user info needed for db entry and send to php script
+                //Get and set user info as local vars
                 
-                //Get upload form data
+                
+                //Set lng/lat as local vars
+                var lat = coords.lat();
+                var lng = coords.lng();
+                                
+                //Get file from upload form data. This will include the name
                 var files = $('#myfile')[0];               
                 var data = new FormData();                
-                var url =  "PHP/uploadPhoto.php";
+                var url =  "PHP/uploadpic.php";
                 var xhr = new XMLHttpRequest();  
 
                 //Add files to dataform 
                 jQuery.each(files.files, function (i, file) {
                     data.append("myfile", file)
                 });     
+                
+                //Pack lat/lng into dataform
+                data.append("lat", lat);
+                data.append("lng", lng);
                         
                 //Using xhr cuase undertermined issue with jquery ajax
                 xhr.open('POST', url, true);
@@ -76,18 +86,18 @@ function validateUploadForm(filename)
         return "location selection failed";
     }
   
-    //If photo not selected, alert and exit.
+    //If pic not selected, alert and exit.
     if(filename.lastIndexOf("png") !== filename.length-3) //Accepts only png
     {
         alert("Must provide .png file to be uploaded");
-        return "photo selection failed";
+        return "pic selection failed";
     }
     
     return "success";
 }
 
-//Unimplmented
-//Embeds the Lat/Lng position got from the google api's into a photos exif tags
+//Unimplmented, and may not be used. Possibly just pack the lat/lng into db
+//Embeds the Lat/Lng position got from the google api's into a pics exif tags
 function embedCoords(file, coords)
 {
     //Create a file reader
