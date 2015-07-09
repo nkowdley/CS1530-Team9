@@ -24,51 +24,57 @@ function uploadPic(filename, callback) //callback for testing
             }
             
             //Prepare data and upload
-            //TODO: pack in user info and lat/lng of the pic
+            //TODO: handle facebook error better. 
             else
             {
-                //Get and set user info as local vars
-                
-                
-                //Set lng/lat as local vars
-                var lat = coords.lat();
-                var lng = coords.lng();
-                                
-                //Get file from upload form data. This will include the name
-                var files = $('#myfile')[0];               
-                var data = new FormData();                
-                var url =  "PHP/uploadpic.php";
-                var xhr = new XMLHttpRequest();  
-
-                //Add files to dataform 
-                jQuery.each(files.files, function (i, file) {
-                    data.append("myfile", file)
-                });     
-                
-                //Pack lat/lng into dataform
-                data.append("lat", lat);
-                data.append("lng", lng);
+                //Get user Id. Asychronous, so wrap upload in the callback for simple handling
+                getUserId(function(result)
+                { 
+                    if(result) //ensure that the facebook request sent a valid returns
+                    {
+                        //Set user id as local var
+                        var userId = result["id"];
+                        console.log("UserId = " + userId);
                         
-                //Using xhr cuase undertermined issue with jquery ajax
-                xhr.open('POST', url, true);
-                xhr.upload.onprogress = function(e) {    
-                };    
-
-                xhr.upload.onerror = function(e){
-                };
-                
-                
-                //Completion listener
-                xhr.addEventListener('readystatechange', function(e) {
-                if( this.readyState === 4 ) 
-                {
-                    var result = this.responseText;
-                    alert(result);
-                    $('#myfile').val(null);
-                }
+                        //Set lng/lat as local vars
+                        var lat = coords.lat();
+                        var lng = coords.lng();
+                        
+                        //Get file from upload form data. This will include the name of the pic
+                        var files = $('#myfile')[0];               
+                        var data = new FormData();                
+                        var url =  "PHP/uploadPic.php";
+                        var xhr = new XMLHttpRequest();                    
+                                        
+                        //Add files to dataform 
+                        jQuery.each(files.files, function (i, file) {
+                            data.append("myfile", file)
+                        });     
+                        
+                        //Pack lat/lng  and user id into dataform
+                        data.append("lat", lat);
+                        data.append("lng", lng);
+                        data.append("user", userId);
+                                
+                        //Using xhr cuase undertermined issue with jquery ajax
+                        xhr.open('POST', url, true);                
+                        
+                        //Completion listener
+                        xhr.addEventListener('readystatechange', function(e) {
+                        if( this.readyState === 4 ) 
+                        {
+                            var result = this.responseText;
+                            //alert(result); //FOR DEBUG ONLY
+                            $('#myfile').val(null);
+                        }
+                        });
+                        xhr.send(data);
+                        callback("complete");
+                    }
+                    
+                    else //facebook /me request did not return a valid value
+                        alert("Could not get user ID");
                 });
-                xhr.send(data);
-                callback("complete");
             }
         });
     }
@@ -76,6 +82,7 @@ function uploadPic(filename, callback) //callback for testing
     return "failure"
 }
 
+//Makes sure form is properly set up and enviroment is ready to load
 function validateUploadForm(filename)
 {
     //If location not selected, alert and exit

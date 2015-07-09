@@ -71,13 +71,23 @@ QUnit.test("uploadPic() prelim test", function(assert)
     assert.notOk(result, "Result should be undefined");
 });
 
+//Test that the getUserId function will properly return a user ID for a logged in user
+QUnit.test("getUserId test", function(assert)
+{
+    var result;
+    getUserId(function(result) {
+        assert.ok(result, "GetUserId returned valid");
+    });
+    
+    assert.notOk(result, "Result should be undefined");
+});
+
 //Test embeding location coords into a pic's exit data
 QUnit.test("coord embed test", function(assert)
 {
     var coords = new google.maps.LatLng(40.441983, -79.957351);
     //embedCoords(, coords)
 });
-
 
 //Test maps api search functionality (broked)
 QUnit.test("map search test", function(assert) 
@@ -98,8 +108,8 @@ QUnit.test("map search test", function(assert)
     //Get map object
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     var mapOptions = {
-    center: { lat: 40.441983, lng: -79.957351},
-    zoom: 10
+        center: { lat: 40.441983, lng: -79.957351},
+        zoom: 10
     };
     assert.ok(map.getCenter() == expected , "Map correctly centered on posvar");
 });
