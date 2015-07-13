@@ -94,7 +94,7 @@ function validateUploadForm(filename)
     }
   
     //If pic not selected, alert and exit.
-    if(filename.lastIndexOf("png") !== filename.length-3) //Accepts only png
+    if(filename.lastIndexOf("png") !== filename.length-3) //accepts only png
     {
         alert("Must provide .png file to be uploaded");
         return "pic selection failed";
@@ -110,7 +110,7 @@ function embedCoords(file, coords)
     //Create a file reader
     var fr = new FileReader();
     
-    fr.onloadend = function() //When ready
+    fr.onloadend = function() //when ready
     {
         //Get exif
         var exif = EXIF.readFromBinaryFile(new BinaryFile(this.result));

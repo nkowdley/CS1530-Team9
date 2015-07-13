@@ -10,11 +10,14 @@
         $result = 0;
         $target_path = $destination_path . basename( $_FILES['myfile']['name']); //full path for pic 
 
+        //Check physical file move success
         if(@move_uploaded_file($_FILES['myfile']['tmp_name'], $target_path)) {
           $result = 1;
         }
+        
+        //Add the file as a db entry
 
-        print_r($_POST); //FOR DEBUG ONLY
+        //print_r($_POST); //FOR DEBUG ONLY
         echo "uploaded";
         sleep(1);
     }
