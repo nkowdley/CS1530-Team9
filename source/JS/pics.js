@@ -28,12 +28,12 @@ function uploadPic(filename, callback) //callback for testing
             else
             {
                 //Get user Id. Asychronous, so wrap upload in the callback for simple handling
-                getUserId(function(result)
+                getUserId(function(userId)
                 { 
-                    if(result) //ensure that the facebook request sent a valid returns
+                    //Ensure that the facebook request sent a valid returns
+                    if(userId) //TODO: handle better then just if not null
                     {
                         //Set user id as local var
-                        var userId = result["id"];
                         console.log("UserId = " + userId);
                         
                         //Set lng/lat as local vars
@@ -52,9 +52,8 @@ function uploadPic(filename, callback) //callback for testing
                         });     
                         
                         //Pack lat/lng  and user id into dataform
-                        data.append("lat", lat);
-                        data.append("lng", lng);
-                        data.append("user", userId);
+                        data.append("geoLoc", lat + " , " + lng);
+                        data.append("userId", userId);
                                 
                         //Using xhr cuase undertermined issue with jquery ajax
                         xhr.open('POST', url, true);                

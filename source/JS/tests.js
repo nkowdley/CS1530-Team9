@@ -60,8 +60,8 @@ QUnit.test("pic form validation", function(assert)
     assert.ok(validateUploadForm("billy.png") === "success", "valid form passed");
 });
 
-//Test that uploadPic() successfully calls PHP upload script
-QUnit.test("uploadPic() prelim test", function(assert)
+//Test that uploadPic() calls the PHP script, other functions live tested due to file I/O
+QUnit.test("uploadPic() test", function(assert)
 {    
     var result;
     uploadPic("sample.png", function(result){
@@ -80,6 +80,17 @@ QUnit.test("getUserId test", function(assert)
     });
     
     assert.notOk(result, "Result should be undefined");
+});
+
+//Test that the getUserId function will properly return a user info in JSON format for a logged in user
+QUnit.test("getUser test", function(assert)
+{
+    var result;
+    getUser(function(result) {
+        assert.ok(result, "GetUser returned valid");
+    });
+    
+    assert.notOk(result, "Wait for aynch");
 });
 
 //Test embeding location coords into a pic's exit data
