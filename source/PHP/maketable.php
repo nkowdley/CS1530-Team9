@@ -5,7 +5,7 @@
 </head>
 <body>
   <?php
-  $db = new mysqli('localhost', 'root', 'user', 'pass');
+  $db = new mysqli('localhost', 'user', 'password', 'db');
   if ($db->connect_error):
     die ("Could not connect to db: " . $db->connect_error);
   endif;
@@ -16,8 +16,8 @@
   
   //make tables
   //Pics table scheme changed to have arbitrary (auto incremented) id as primary key, and hold geolocation, uploader name/id and relative path to file
-  $result = $db->query("create table Pics (id int NOT NULL AUTO_INCREMENT, uploaderName char(64) not null, uploaderId char(64) not null, picGeolocation char(64), picPath char(64), PRIMARY KEY(id)))") or die ("Invalid: " . $db->error);//Pics table
-  $result = $db->query("create table Users (id int, user char(64) not null, interests char(64) not null, education char(64), PRIMARY KEY (user))") or die ("Invalid: " . $db->error);//Users Table
+  $result = $db->query("create table Pics (id int NOT NULL AUTO_INCREMENT, uploaderName varchar(64) not null, uploaderId varchar(64) not null, picGeolocation varchar(64), picPath varchar(64), PRIMARY KEY(id))") or die ("Invalid: " . $db->error);//Pics table
+  $result = $db->query("create table Users (id int, user varchar(64) not null, interests varchar(64) not null, education varchar(64), PRIMARY KEY (user))") or die ("Invalid: " . $db->error);//Users Table
  
   //dummy data for testing
   $db->query('INSERT INTO Pics (uploaderName, uploaderId, picGeolocation, picPath)VALUES("neel", "1", "text", "hello world")') or die ("Invalid: " . $db->error); //test post
@@ -25,6 +25,17 @@
   
   echo "<h3>Here is your data:</h3>";
   $query = "select * from Pics;";
+  $result = $db->query($query);
+  $rows = $result->num_rows;
+  for ($i = 0; $i < $rows; $i++):
+    $row = $result->fetch_array();
+    foreach ($row as $key=>$val):
+      echo "$key:$val  ";
+    endforeach;
+    echo "<br/>";
+  endfor;
+  
+  $query = "select * from Users;";
   $result = $db->query($query);
   $rows = $result->num_rows;
   for ($i = 0; $i < $rows; $i++):

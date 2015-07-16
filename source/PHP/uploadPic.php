@@ -21,14 +21,15 @@
         $userId = $_POST["userId"];
         
         //Instanstiate the db
-        $db = new mysqli('localhost', 'root', 'user', 'pass');
+        $db = new mysqli('localhost', 'user', 'password', 'db');
         if ($db->connect_error)
             die ("Could not connect to db: " . $db->connect_error);
         
         //Add the file as a db entry
-        $db->query("INSERT INTO Pics (uploaderId, picGeolocation, picPath)VALUES($userId, $geoLoc, $target_path)") or die ("Invalid: " . $db->error); //test post
+        $db->query("INSERT INTO Pics (uploaderId, picGeolocation, picPath) VALUES('$userId', '$geoLoc','$target_path')") or die ("Invalid: " . $db->error); //test post
 
         //Close DB
+        $db->close();
         
         //print_r($_POST); //FOR DEBUG ONLY
         echo "uploaded";

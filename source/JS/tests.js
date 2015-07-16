@@ -4,7 +4,7 @@
  */
 
 //Hack that disables alerts for uneeded alerts used in certain tested functions
-window.alert = function() {};
+//window.alert = function() {};
 
 //Hello World test
 QUnit.test("hello test", function(assert) 
@@ -68,18 +68,7 @@ QUnit.test("uploadPic() test", function(assert)
         assert.ok(result === "complete", "uploadPic() ran through");
     });
     
-    assert.notOk(result, "Result should be undefined");
-});
-
-//Test that the getUserId function will properly return a user ID for a logged in user
-QUnit.test("getUserId test", function(assert)
-{
-    var result;
-    getUserId(function(result) {
-        assert.ok(result, "GetUserId returned valid");
-    });
-    
-    assert.notOk(result, "Result should be undefined");
+    assert.notOk(result, "Should see another assert.");
 });
 
 //Test that the getUserId function will properly return a user info in JSON format for a logged in user
@@ -91,6 +80,17 @@ QUnit.test("getUser test", function(assert)
     });
     
     assert.notOk(result, "Wait for aynch");
+});
+
+//Test that the getUserId function will properly return a user ID for a logged in user
+QUnit.test("getUserId test", function(assert)
+{
+    var result;
+    getUserId(function(result) {
+        assert.ok(result, "GetUserId returned valid");
+    });
+    
+    assert.notOk(result, "Should see another assert.");
 });
 
 //Test embeding location coords into a pic's exit data

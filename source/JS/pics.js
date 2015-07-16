@@ -9,8 +9,8 @@ $("form[name=upload-form]").submit(function(){
 //Asynchronous call to getPicCoords makes function asynchronous
 function uploadPic(filename, callback) //callback for testing
 {
-    var success = validateUploadForm(filename);
-
+    var success = validateUploadForm(filename);   
+    
     if(success === "success")
     {        
         //Get pic coords, rest of the upload must be in callback
@@ -63,7 +63,7 @@ function uploadPic(filename, callback) //callback for testing
                         if( this.readyState === 4 ) 
                         {
                             var result = this.responseText;
-                            //alert(result); //FOR DEBUG ONLY
+                            alert(result); //FOR DEBUG ONLY
                             $('#myfile').val(null);
                         }
                         });
@@ -78,12 +78,14 @@ function uploadPic(filename, callback) //callback for testing
         });
     }
     
+    //alert("failed"); //DEBUG
     return "failure"
 }
 
 //Makes sure form is properly set up and enviroment is ready to load
 function validateUploadForm(filename)
 {
+    
     //If location not selected, alert and exit
     var location = $("#address").val();
     if(location === "" || location === null)

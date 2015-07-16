@@ -2,6 +2,7 @@
 
 //Gets the current users information returned as JSON. Return undefined for bad requests
 //TODO: handle more then just facebook info
+//Tests are broken here for some reason
 function getUser(callback) //asynchronous
 {
     FB.api('/me', function(response) { //request facebook for info
@@ -12,8 +13,9 @@ function getUser(callback) //asynchronous
 //Return just a users unique id
 function getUserId(callback) //asychronous
 {
-    getUser(function(callback)
+    getUser(function(data)
     {
-    
+        obj = JSON.parse(data);
+        callback(obj.id);
     });
 }
