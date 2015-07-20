@@ -1,7 +1,8 @@
 <?php
+//WARNING: May be a bug with getting the location
 //WARNING: Function does not handle pic's of the same name in any way
-//TODO: add pic entry to db upon upload
-//TODO: ensure logged in
+//TODO: ensure multiple file name uploads are not added to DB
+//TODO: ensure logged in, upload will fail if not
 
     //Uploads file to IMG folder relative to where upload.php is located
     if(isset($_FILES['myfile']['name']))

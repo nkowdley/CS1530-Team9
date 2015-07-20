@@ -93,13 +93,6 @@ QUnit.test("getUserId test", function(assert)
     assert.notOk(result, "Should see another assert.");
 });
 
-//Test embeding location coords into a pic's exit data
-QUnit.test("coord embed test", function(assert)
-{
-    var coords = new google.maps.LatLng(40.441983, -79.957351);
-    //embedCoords(, coords)
-});
-
 //Test maps api search functionality (broked)
 QUnit.test("map search test", function(assert) 
 {

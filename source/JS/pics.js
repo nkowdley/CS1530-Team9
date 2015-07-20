@@ -104,18 +104,15 @@ function validateUploadForm(filename)
     return "success";
 }
 
-//Unimplmented, and may not be used. Possibly just pack the lat/lng into db
-//Embeds the Lat/Lng position got from the google api's into a pics exif tags
-function embedCoords(file, coords)
-{
-    //Create a file reader
-    var fr = new FileReader();
-    
-    fr.onloadend = function() //when ready
-    {
-        //Get exif
-        var exif = EXIF.readFromBinaryFile(new BinaryFile(this.result));
 
-        alert(exif);
-    };
+//Gets all pic entries from the DB by calling getPics.php
+function getAllPics(callback) //asynchronous
+{
+    
+}
+
+//Creates a google maps info window for a pic marker. Should display pic, location, and uploader etc.
+function createInfoWindow(pic)
+{
+
 }
