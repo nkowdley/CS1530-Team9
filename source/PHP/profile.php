@@ -61,8 +61,6 @@
     die();
   }
   ?>
-
-
   <!--function calls-->
   <?php
   function connect_to_db($user)
