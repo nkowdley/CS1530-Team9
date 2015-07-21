@@ -52,7 +52,7 @@
   {
     $user=$_GET['user'];//move the contents of user from the $_GET varialbe to a local variable
     connect_to_db($user);
-    map(); //prints out Google Map
+    map($user); //prints out Google Map
   }
   else
   {
@@ -65,7 +65,7 @@
   <?php
   function connect_to_db($user)
   {
-    $db = new mysqli('localhost', 'root', '', 'CS1530');//set the db params
+    $db = new mysqli('localhost', 'root', 'pass', 'CS1530');//set the db params
     $query="SELECT * from Users where user='$user'"; //db query to pull all info about a user from a table
     $result=$db->query($query) or die ("Invalid: " . $db->error);
     //Extract the info from the $result object
@@ -88,14 +88,19 @@
     echo "<div id=\"interests\">$interests</div>";
     echo "<div id=\"education\">$education</div>";
   }
-  function map()
+
+  function map($user)
   {
     //code for google maps
     echo "
     <div id=\"map-canvas\" style=\"height:30%;margin-top:120px;\"></div>
     <input id=\"search-box\" class=\"controls\" type=\"text\">
+    <div id=\"profile-banner\" style=\"height:15%; width:10%; color: #ffffff; background-color: #00001F;\">
+        <span style=\"vertical-align: middle; font-size: xx-large\">$user sucks</span>
+    </div>
     <script type=\"text/javascript\">
       gotoMap();
+      addProfileBanner();
     </script>";
   }
   ?>

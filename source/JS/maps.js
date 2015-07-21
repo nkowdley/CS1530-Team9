@@ -89,3 +89,9 @@ function getPicCoords(callback)
         }
     });
 }
+
+function addProfileBanner(){
+    //Create the search box and link it to the UI element.
+    var input = (document.getElementById('profile-banner'));
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
+}
