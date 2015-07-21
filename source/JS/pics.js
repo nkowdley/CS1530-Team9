@@ -24,6 +24,7 @@ function uploadPic(filename, callback) //callback for testing
             }
             
             //Prepare data and upload
+<<<<<<< HEAD
             //TODO: handle facebook error better. 
             else
             {
@@ -35,6 +36,32 @@ function uploadPic(filename, callback) //callback for testing
                     {
                         //Set user id as local var
                         console.log("UserId = " + userId);
+=======
+            //TODO: pack in user info and lat/lng of the pic
+            else
+            {
+                //Get and set user info as local vars
+                
+                
+                //Set lng/lat as local vars
+                var lat = coords.lat();
+                var lng = coords.lng();
+                                
+                //Get file from upload form data. This will include the name
+                var files = $('#myfile')[0];               
+                var data = new FormData();                
+                var url =  "PHP/uploadpic.php";
+                var xhr = new XMLHttpRequest();  
+
+                //Add files to dataform 
+                jQuery.each(files.files, function (i, file) {
+                    data.append("myfile", file)
+                });     
+                
+                //Pack lat/lng into dataform
+                data.append("lat", lat);
+                data.append("lng", lng);
+>>>>>>> master
                         
                         //Set lng/lat as local vars
                         var lat = coords.lat();
@@ -95,7 +122,11 @@ function validateUploadForm(filename)
     }
   
     //If pic not selected, alert and exit.
+<<<<<<< HEAD
     if(filename.lastIndexOf("png") !== filename.length-3) //accepts only png
+=======
+    if(filename.lastIndexOf("png") !== filename.length-3) //Accepts only png
+>>>>>>> master
     {
         alert("Must provide .png file to be uploaded");
         return "pic selection failed";
@@ -104,9 +135,15 @@ function validateUploadForm(filename)
     return "success";
 }
 
+<<<<<<< HEAD
 
 //Gets all pic entries from the DB by calling getPics.php
 function getAllPics(callback) //asynchronous
+=======
+//Unimplmented, and may not be used. Possibly just pack the lat/lng into db
+//Embeds the Lat/Lng position got from the google api's into a pics exif tags
+function embedCoords(file, coords)
+>>>>>>> master
 {
     //Ajax call to getPics.php
     $.ajax({

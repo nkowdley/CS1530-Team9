@@ -71,8 +71,13 @@ QUnit.test("uploadPic() test", function(assert)
     assert.notOk(result, "Should see another assert.");
 });
 
+<<<<<<< HEAD
 //Test that the getUserId function will properly return a user info in JSON format for a logged in user
 QUnit.test("getUser test", function(assert)
+=======
+//Test embeding location coords into a pic's exit data
+QUnit.test("coord embed test", function(assert)
+>>>>>>> master
 {
     var result;
     getUser(function(result) {
