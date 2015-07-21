@@ -13,6 +13,40 @@
 <script src="../JS/facebook.js"></script>
 <script src="../JS/bootstrap.min.js"></script>
 <body>
+  <!--NavBar-->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+          <div class="navbar-header">
+              <a class="navbar-brand" href="#">Map Thingy</a>
+          </div>
+
+          <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                  <li><a href="#about">Link</a></li>
+                  <li><a href="#contact">Another Link</a></li>
+              </ul>
+
+
+              <form class="navbar-form navbar-right" id="upload-form" name="upload-form" method="post" enctype="multipart/form-data">
+                  <div class="form-group">
+                      <span class="btn btn-success btn-file">
+                          Chose File <input type="file" id="myfile" name="myfile" class="btn btn-success"/>
+                      </span>
+                  </div>
+
+                  <div class="form-group">
+                      Location <input id="address" type="text">
+                  </div>
+                  <div class="form-group">
+                      <button type="submit" id="file-button" class="btn btn-success" name="submitBtn" value="Upload">Upload</button>
+                  </div>
+              </form>
+              <div id="status"></div>
+
+          </div>
+      </div><!-- /.container -->
+  </nav>
+
   <?php
   if(isset($_GET['user'])) //if the user variable is sent through a GET Request
   {
@@ -52,16 +86,15 @@
       die();
     }
     //print out the info we obtained
-    echo "$user";
-    echo "$interests";
-    echo "$education";
-
+    echo "<div id=\"username\"<h1>$user</h1></div>";
+    //echo "$interests";
+    //echo "$education";
   }
   function map()
   {
     //code for google maps
     echo "
-    <div id=\"map-canvas\" style=\"height:30%;\"></div>
+    <div id=\"map-canvas\" style=\"height:30%;margin-top:120px;\"></div>
     <input id=\"search-box\" class=\"controls\" type=\"text\">
     <script type=\"text/javascript\">
       gotoMap();
