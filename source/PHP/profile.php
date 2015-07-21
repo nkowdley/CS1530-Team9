@@ -30,7 +30,7 @@
               <form class="navbar-form navbar-right" id="upload-form" name="upload-form" method="post" enctype="multipart/form-data">
                   <div class="form-group">
                       <span class="btn btn-success btn-file">
-                          Chose File <input type="file" id="myfile" name="myfile" class="btn btn-success"/>
+                          Choose File <input type="file" id="myfile" name="myfile" class="btn btn-success"/>
                       </span>
                   </div>
 
