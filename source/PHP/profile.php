@@ -5,15 +5,37 @@
 </head>
 <link href="stylesheet.css" rel="stylesheet" type="text/css"</>
 <body>
-  <!-- Includes for testing -->
+  <!-- Includes for maps-->
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBcaRb_4a8rqmrenDR-_W3sPQ37An_3fzs"></script><!--api key for local host-->
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places,location&sensor=SET_TO_TRUE_OR_FALSE"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="../JS/maps.js"></script>
+  <script src="../JS/pics.js"></script>
+  <script src="../JS/facebook.js"></script>
+  <script src="../JS/bootstrap.min.js"></script>
   <?php
   if(isset($_GET['user'])) //if the user variable is sent through a GET Request
   {
-
-    $db = new mysqli('localhost', 'root', '', 'CS1530');//set the db params
     $user=$_GET['user'];//move the contents of user from the $_GET varialbe to a local variable
+    connect_to_db($user);
+    map(); //prints out Google Map
+  }
+  else
+  {
+    //if a user name is not passed via GET, kill the page load and echo an error
+    echo "<h3>ERROR!</h3>";
+    die();
+  }
+  ?>
+
+
+
+
+
+  <!--function calls-->
+  <?php
+  function connect_to_db($user)
+  {
+    $db = new mysqli('localhost', 'root', '', 'CS1530');//set the db params
     $query="SELECT * from Users where user='$user'"; //db query to pull all info about a user from a table
     $result=$db->query($query) or die ("Invalid: " . $db->error);
     //Extract the info from the $result object
@@ -37,11 +59,16 @@
     echo "$education";
 
   }
-  else
+  function map()
   {
-    //if a user name is not passed via GET, kill the page load and echo an error
-    echo "<h3>ERROR!</h3>";
-    die();
+    //code for google maps
+    echo "<script type=\"text/javascript\">
+    $(document).ready(function()
+    {
+      gotoMap();
+    });
+    </script>";
+
   }
   ?>
 </body>
