@@ -3,7 +3,7 @@
 <head>
   <title>Profile Template</title>
 </head>
-<link href="stylesheet.css" rel="stylesheet" type="text/css"</>
+<link href="../CSS/stylesheet.css" rel="stylesheet" type="text/css"</>
 <body>
   <!-- Includes for maps-->
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBcaRb_4a8rqmrenDR-_W3sPQ37An_3fzs"></script><!--api key for local host-->
@@ -62,7 +62,10 @@
   function map()
   {
     //code for google maps
-    echo "<script type=\"text/javascript\">
+    echo "
+    <div id=\"map-canvas\"></div>
+    <input id=\"search-box\" class=\"controls\" type=\"text\">
+    <script type=\"text/javascript\">
     $(document).ready(function()
     {
       gotoMap();
