@@ -1,8 +1,11 @@
 html, body, #map-canvas
-{ 
-    height: 100%; 
-    margin: 0; 
+{
+    height: 100%;
+    margin: 0;
     padding: 0;
+}
+#username {
+    margin-top:70px; /* adjust top margin to your header height */
 }
 
 #login
@@ -70,5 +73,5 @@ border-color: #4d90fe;
     background: white;
     cursor: inherit;
     display: block;
-    
+
 }

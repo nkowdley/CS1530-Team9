@@ -1,0 +1,3 @@
+DE3 - Get Query Sanitation
+
+There were some defects found with the current database implementation. There is no query sanitation implemented. With this defect there is no sanitation with get requests from the DB. The expected behavior of this is that attempting something like SQL injection through a query is not blocked. The observed behavior is that any input can be queried without any validation.
