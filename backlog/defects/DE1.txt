@@ -1,0 +1,3 @@
+DE1 - Text Upload
+
+To reproduce this defect, log in to a user and upload a text update. The expected behavior is that the text update will be posted and a text icon will appear at the chosen location, allowing the user to view the text update. Currently the observed behavior is that the text is not shown on the page. This was found through unit testing and is caused by text updates not being implemented on the front-end.
