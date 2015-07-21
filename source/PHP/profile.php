@@ -3,15 +3,16 @@
 <head>
   <title>Profile Template</title>
 </head>
-<link href="../CSS/stylesheet.css" rel="stylesheet" type="text/css"</>
+<link href="../CSS/style.css?<?php echo time() ?>" rel="stylesheet" type="text/css"> <!-- hack to stop chrome from cacheing CSS cuasing immediate changes to not be displayed -->
+<link href="../CSS/bootstrap.min.css" rel="stylesheet" media="screen">
+<!-- Includes for maps-->
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBcaRb_4a8rqmrenDR-_W3sPQ37An_3fzs"></script><!--api key for local host-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="../JS/maps.js"></script>
+<script src="../JS/pics.js"></script>
+<script src="../JS/facebook.js"></script>
+<script src="../JS/bootstrap.min.js"></script>
 <body>
-  <!-- Includes for maps-->
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBcaRb_4a8rqmrenDR-_W3sPQ37An_3fzs"></script><!--api key for local host-->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="../JS/maps.js"></script>
-  <script src="../JS/pics.js"></script>
-  <script src="../JS/facebook.js"></script>
-  <script src="../JS/bootstrap.min.js"></script>
   <?php
   if(isset($_GET['user'])) //if the user variable is sent through a GET Request
   {
@@ -26,9 +27,6 @@
     die();
   }
   ?>
-
-
-
 
 
   <!--function calls-->
@@ -66,11 +64,9 @@
     <div id=\"map-canvas\"></div>
     <input id=\"search-box\" class=\"controls\" type=\"text\">
     <script type=\"text/javascript\">
-    $(document).ready(function()
-    {
       gotoMap();
-    });
     </script>";
+    echo "We are in da function";
 
   }
   ?>
