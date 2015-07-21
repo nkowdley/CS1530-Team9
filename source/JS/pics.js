@@ -141,7 +141,7 @@ function populateMap() //uses asynchronous calls, but its return shouldn't actua
                         
             //Generate infoWindow for pic
             var infoHtml = '<div style="width: 100%; height:100%;">' +
-            '<img style="width: 100%; height:100%;" src="' + path + '"width></div>';
+            '<img style="width: 400px;" src="' + path + '"width></div>';
             var infowindow = new google.maps.InfoWindow({
                 content: infoHtml
             });
