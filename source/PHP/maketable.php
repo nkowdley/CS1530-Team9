@@ -16,7 +16,7 @@
   
   //make tables
   //Pics table scheme changed to have arbitrary (auto incremented) id as primary key, and hold geolocation, uploader name/id and relative path to file
-  $result = $db->query("create table Pics (id int NOT NULL AUTO_INCREMENT, uploaderId varchar(64) not null, picGeolocation varchar(64), picPath varchar(64), PRIMARY KEY(id))") or die ("Invalid: " . $db->error);//Pics table
+  $result = $db->query("create table Pics (id int NOT NULL AUTO_INCREMENT, uploaderId varchar(64) not null, picLat varchar(64), picLng varchar(64), picPath varchar(64), PRIMARY KEY(id))") or die ("Invalid: " . $db->error);//Pics table
   $result = $db->query("create table Users (id int, user varchar(64) not null, interests varchar(64) not null, education varchar(64), PRIMARY KEY (user))") or die ("Invalid: " . $db->error);//Users Table
  
   //dummy data for testing

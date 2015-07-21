@@ -52,7 +52,8 @@ function uploadPic(filename, callback) //callback for testing
                         });     
                         
                         //Pack lat/lng  and user id into dataform
-                        data.append("geoLoc", lat + " , " + lng);
+                        data.append("lat", lat);
+                        data.append("lng", lng);
                         data.append("userId", userId);
                                 
                         //Using xhr cuase undertermined issue with jquery ajax
@@ -112,14 +113,71 @@ function getAllPics(callback) //asynchronous
         url: 'PHP/getPics.php',
         success: function(data) {
             var json = JSON.parse(data);
-            console.log("PIC DATA - " + json); //DEBUG
+            //console.log("PIC DATA - " + json); //DEBUG
             callback(json);
         }
+    });
+}
+
+//Function used to place markers representing pics on the the map
+//Currently just places ALL markers, which is an unscalable solution
+function populateMap(callback) //uses asynchronous calls, but its return shouldn't actually matter
+{
+    //Get list of all pics
+    getAllPics(function(pics) { //more asynch hell 
+    
+        //Iterate over list of pics
+        for(var pic in pics)
+        {
+            //Get attributes from pic
+            var path = pic.picPath;
+            var latLng = pic.picGeolocation;
+            var uploader = pic.uploaderId;
+            
+            //Generate infoWindow for pic
+            var infoWindow = createInfoWindow(pic);
+            
+            //Place marker for pic
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: 'Uluru (Ayers Rock)'
+            });
+            
+        }
+        
+        callback("Success");
     });
 }
 
 //Creates a google maps info window for a pic marker. Should display pic, location, and uploader etc.
 function createInfoWindow(pic)
 {
-
+    //Create the string designating html to show photo and relevant info
+    var infoHtml = '<div id="content">'+ //dummy html from example
+    '<div id="siteNotice">'+
+    '</div>'+
+    '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+    '<div id="bodyContent">'+
+    '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+    'sandstone rock formation in the southern part of the '+
+    'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+    'south west of the nearest large town, Alice Springs; 450&#160;km '+
+    '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+    'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+    'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+    'Aboriginal people of the area. It has many springs, waterholes, '+
+    'rock caves and ancient paintings. Uluru is listed as a World '+
+    'Heritage Site.</p>'+
+    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+    'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+    '(last visited June 22, 2009).</p>'+
+    '</div>'+
+    '</div>';
+      
+    var infowindow = new google.maps.InfoWindow({
+        content: infoHtml
+    });
+    
+    return infowindow;
 }
