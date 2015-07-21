@@ -57,7 +57,7 @@
   else
   {
     //if a user name is not passed via GET, kill the page load and echo an error
-    echo "<h3>ERROR!</h3>";
+    echo "<div id=\"Error\" style=\"margin-top:70px;\"><h3>ERROR!</h3></div>";
     die();
   }
   ?>
