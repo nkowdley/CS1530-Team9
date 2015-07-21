@@ -86,7 +86,7 @@
       die();
     }
     //print out the info we obtained
-    echo "<div id=\"username\"<h1>$user</h1></div>";
+    echo "<div id=\"username\"><h1>$user</h1></div>";
     //echo "$interests";
     //echo "$education";
   }
@@ -99,8 +99,6 @@
     <script type=\"text/javascript\">
       gotoMap();
     </script>";
-    echo "We are in da function";
-
   }
   ?>
 </body>
