@@ -85,8 +85,8 @@
     }
     //print out the info we obtained
     echo "<div id=\"username\"><h1>$user</h1></div>";
-    //echo "$interests";
-    //echo "$education";
+    echo "<div id=\"interests\">$interests</div>";
+    echo "<div id=\"education\">$education</div>";
   }
   function map()
   {
