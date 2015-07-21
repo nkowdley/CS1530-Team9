@@ -113,7 +113,7 @@ function getAllPics(callback) //asynchronous
         url: 'PHP/getPics.php',
         success: function(data) {
             var json = JSON.parse(data);
-            //console.log("PIC DATA - " + json); //DEBUG
+            //console.log("PIC DATA - " + json[0].picPath); //DEBUG
             callback(json);
         }
     });
@@ -121,63 +121,44 @@ function getAllPics(callback) //asynchronous
 
 //Function used to place markers representing pics on the the map
 //Currently just places ALL markers, which is an unscalable solution
-function populateMap(callback) //uses asynchronous calls, but its return shouldn't actually matter
+// WARNING: pic path needs to absolute for server
+function populateMap() //uses asynchronous calls, but its return shouldn't actually matter
 {
     //Get list of all pics
     getAllPics(function(pics) { //more asynch hell 
-    
         //Iterate over list of pics
-        for(var pic in pics)
+        for(var i=0; i<pics.length; i++)
         {
+            var pic = pics[i];
+            
             //Get attributes from pic
-            var path = pic.picPath;
-            var latLng = pic.picGeolocation;
+            //**Whats up with relative paths? this file is already in CStest so why need to add?
+            var path = "/CStest" + pic.picPath; //THIS IS FOR MY PERSONAL LOCAL HOSTING, NEEDS CHANGED FOR SERVER
             var uploader = pic.uploaderId;
             
+            //Make LatLng obj
+            var myLatLng = new google.maps.LatLng(pic.picLat, pic.picLng);
+                        
             //Generate infoWindow for pic
-            var infoWindow = createInfoWindow(pic);
+            var infoHtml = '<div id="content">' +
+            '<img src="' + path + '"</div>';
+            var infowindow = new google.maps.InfoWindow({
+                content: infoHtml
+            });
             
             //Place marker for pic
             var marker = new google.maps.Marker({
-                position: myLatlng,
+                position: myLatLng,
                 map: map,
-                title: 'Uluru (Ayers Rock)'
+                title: 'Title'
             });
             
+            //Add listener to open window on click
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map,marker);
+            });
+            
+            
         }
-        
-        callback("Success");
     });
-}
-
-//Creates a google maps info window for a pic marker. Should display pic, location, and uploader etc.
-function createInfoWindow(pic)
-{
-    //Create the string designating html to show photo and relevant info
-    var infoHtml = '<div id="content">'+ //dummy html from example
-    '<div id="siteNotice">'+
-    '</div>'+
-    '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-    '<div id="bodyContent">'+
-    '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-    'sandstone rock formation in the southern part of the '+
-    'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-    'south west of the nearest large town, Alice Springs; 450&#160;km '+
-    '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-    'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-    'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-    'Aboriginal people of the area. It has many springs, waterholes, '+
-    'rock caves and ancient paintings. Uluru is listed as a World '+
-    'Heritage Site.</p>'+
-    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-    'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-    '(last visited June 22, 2009).</p>'+
-    '</div>'+
-    '</div>';
-      
-    var infowindow = new google.maps.InfoWindow({
-        content: infoHtml
-    });
-    
-    return infowindow;
 }

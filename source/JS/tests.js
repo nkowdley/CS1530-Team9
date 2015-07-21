@@ -107,6 +107,12 @@ QUnit.test("getUserId test", function(assert)
     assert.notOk(result, "Should see another assert.");
 });
 
+//Test that the create Info  function will properly return a info window object
+QUnit.test("getUserId test", function(assert)
+{
+
+}
+
 //Test maps api search functionality (broked)
 QUnit.test("map search test", function(assert) 
 {
