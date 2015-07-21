@@ -85,7 +85,6 @@ function uploadPic(filename, callback) //callback for testing
 //Makes sure form is properly set up and enviroment is ready to load
 function validateUploadForm(filename)
 {
-    
     //If location not selected, alert and exit
     var location = $("#address").val();
     if(location === "" || location === null)
@@ -108,7 +107,15 @@ function validateUploadForm(filename)
 //Gets all pic entries from the DB by calling getPics.php
 function getAllPics(callback) //asynchronous
 {
-    
+    //Ajax call to getPics.php
+    $.ajax({
+        url: 'PHP/getPics.php',
+        success: function(data) {
+            var json = JSON.parse(data);
+            console.log("PIC DATA - " + json); //DEBUG
+            callback(json);
+        }
+    });
 }
 
 //Creates a google maps info window for a pic marker. Should display pic, location, and uploader etc.

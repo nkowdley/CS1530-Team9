@@ -4,7 +4,7 @@
  */
 
 //Hack that disables alerts for uneeded alerts used in certain tested functions
-//window.alert = function() {};
+window.alert = function() {};
 
 //Hello World test
 QUnit.test("hello test", function(assert) 
@@ -80,6 +80,20 @@ QUnit.test("getUser test", function(assert)
     });
     
     assert.notOk(result, "Wait for aynch");
+});
+
+//Test getAllPics function for returning data that includes the correct JSON data
+QUnit.test("getAllPics test", function(assert)
+{
+    var result;
+    getAllPics(function(result) {
+        assert.ok(result[0].id, "ID returned valid");
+        assert.ok(result[0].uploaderId, "uploaderId returned valid");
+        assert.ok(result[0].picGeolocation, "picGeolocation returned valid");
+        assert.ok(result[0].picPath, "picPath returned valid");
+    });
+    
+    assert.notOk(result, "Wait for asynch");
 });
 
 //Test that the getUserId function will properly return a user ID for a logged in user
