@@ -96,7 +96,7 @@
     <div id=\"map-canvas\" style=\"height:30%;margin-top:120px;\"></div>
     <input id=\"search-box\" class=\"controls\" type=\"text\">
     <div id=\"profile-banner\" style=\"height:15%; width:10%; color: #ffffff; background-color: #00001F;\">
-        <span style=\"vertical-align: middle; font-size: xx-large\">$user sucks</span>
+        <span style=\"vertical-align: middle; font-size: xx-large\">$user</span>
     </div>
     <script type=\"text/javascript\">
       gotoMap();
