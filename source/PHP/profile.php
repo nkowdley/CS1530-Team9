@@ -61,7 +61,7 @@
   {
     //code for google maps
     echo "
-    <div id=\"map-canvas\"></div>
+    <div id=\"map-canvas\" style=\"height:30%;\"></div>
     <input id=\"search-box\" class=\"controls\" type=\"text\">
     <script type=\"text/javascript\">
       gotoMap();
