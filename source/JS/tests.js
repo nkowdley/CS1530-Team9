@@ -60,24 +60,63 @@ QUnit.test("pic form validation", function(assert)
     assert.ok(validateUploadForm("billy.png") === "success", "valid form passed");
 });
 
-//Test that uploadPic() successfully calls PHP upload script
-QUnit.test("uploadPic() prelim test", function(assert)
+//Test that uploadPic() calls the PHP script, other functions live tested due to file I/O
+QUnit.test("uploadPic() test", function(assert)
 {    
     var result;
     uploadPic("sample.png", function(result){
         assert.ok(result === "complete", "uploadPic() ran through");
     });
     
-    assert.notOk(result, "Result should be undefined");
+    assert.notOk(result, "Should see another assert.");
 });
 
+<<<<<<< HEAD
+//Test that the getUserId function will properly return a user info in JSON format for a logged in user
+QUnit.test("getUser test", function(assert)
+=======
 //Test embeding location coords into a pic's exit data
 QUnit.test("coord embed test", function(assert)
+>>>>>>> master
 {
-    var coords = new google.maps.LatLng(40.441983, -79.957351);
-    //embedCoords(, coords)
+    var result;
+    getUser(function(result) {
+        assert.ok(result, "GetUser returned valid");
+    });
+    
+    assert.notOk(result, "Wait for aynch");
 });
 
+//Test getAllPics function for returning data that includes the correct JSON data
+QUnit.test("getAllPics test", function(assert)
+{
+    var result;
+    getAllPics(function(result) {
+        assert.ok(result[0].id, "ID returned valid");
+        assert.ok(result[0].uploaderId, "uploaderId returned valid");
+        assert.ok(result[0].picGeolocation, "picGeolocation returned valid");
+        assert.ok(result[0].picPath, "picPath returned valid");
+    });
+    
+    assert.notOk(result, "Wait for asynch");
+});
+
+//Test that the getUserId function will properly return a user ID for a logged in user
+QUnit.test("getUserId test", function(assert)
+{
+    var result;
+    getUserId(function(result) {
+        assert.ok(result, "GetUserId returned valid");
+    });
+    
+    assert.notOk(result, "Should see another assert.");
+});
+
+//Test that the create Info  function will properly return a info window object
+QUnit.test("getUserId test", function(assert)
+{
+
+}
 
 //Test maps api search functionality (broked)
 QUnit.test("map search test", function(assert) 
@@ -98,8 +137,8 @@ QUnit.test("map search test", function(assert)
     //Get map object
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     var mapOptions = {
-    center: { lat: 40.441983, lng: -79.957351},
-    zoom: 10
+        center: { lat: 40.441983, lng: -79.957351},
+        zoom: 10
     };
     assert.ok(map.getCenter() == expected , "Map correctly centered on posvar");
 });

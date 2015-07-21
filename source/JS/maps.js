@@ -78,7 +78,7 @@ function getPicCoords(callback)
     {
         if (status == google.maps.GeocoderStatus.OK) 
         {
-            //alert(results[0].geometry.location);
+            //alert(results[0].geometry.location); //DEBUG
             callback(results[0].geometry.location);
         } 
         
