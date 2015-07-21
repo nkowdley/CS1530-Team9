@@ -1,0 +1,3 @@
+DE2 - Photo Upload with Location
+
+To reproduce this defect, log in to a user and upload a photo. The expected behavior is that the photo chosen will be uploaded to the server along with the location where the photo was taken. Currently the observed behavior is that the photo is uploaded to the server but the location is not. This was found through unit testing and is caused by an error with DB querying.
