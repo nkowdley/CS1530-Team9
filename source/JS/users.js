@@ -9,7 +9,7 @@ function getUser(callback) //asynchronous
 }
 
 //Return just a users unique id
-function getUserId(callback) //asychronous
+function getUserId(callback) // asychronous
 {
     getUser(function(data)
     {

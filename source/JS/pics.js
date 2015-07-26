@@ -31,11 +31,14 @@ function uploadPic(filename, callback) //callback for testing
             else
             {
                 //Get user Id. Asychronous, so wrap upload in the callback for simple handling
-                getUserId(function(userId)
+                getUser(function(user)
                 { 
                     //Ensure that the facebook request sent a valid returns
-                    if(userId) //TODO: handle better then just if not null
-                    {                       
+                    if(user) //TODO: handle better then just if not null
+                    {            
+                        //Parse the facebook response
+                        var userInfo = JSON.parse(user);
+                        
                         //Get comment
                         var comment = document.getElementById("comment").value;
      
@@ -57,7 +60,8 @@ function uploadPic(filename, callback) //callback for testing
                         //Pack lat/lng  and user id into dataform
                         data.append("lat", lat);
                         data.append("lng", lng);
-                        data.append("userId", userId);
+                        data.append("userId", userInfo.id);
+                        data.append("userName", userInfo.first_name + " " +userInfo.last_name);
                         data.append("comment", comment);
                                 
                         //Using xhr cuase undertermined issue with jquery ajax
@@ -68,7 +72,7 @@ function uploadPic(filename, callback) //callback for testing
                         if( this.readyState === 4 ) 
                         {
                             var result = this.responseText;
-                            alert(result); //FOR DEBUG ONLY
+                            //alert(result); //FOR DEBUG ONLY
                             alert("Uploaded"); 
                             $('#myfile').val(null);
                         }
@@ -78,7 +82,7 @@ function uploadPic(filename, callback) //callback for testing
                     }
                     
                     else //facebook /me request did not return a valid value
-                        alert("Could not get user ID");
+                        alert("Could not find logged in user");
                 });
             }
         });
@@ -143,14 +147,13 @@ function populateMap() //uses asynchronous calls, but its return shouldn't actua
             //**Whats up with relative paths? this file is already in CStest so why need to add?
             var path = "/CStest" + pic.picPath; //THIS IS FOR MY PERSONAL LOCAL HOSTING, NEEDS CHANGED FOR SERVER
             //var path = pic.picPath; 
-            var uploader = pic.uploaderId;
             
             //Make LatLng obj
             var myLatLng = new google.maps.LatLng(pic.picLat, pic.picLng);
                         
             //Generate infoWindow for pic
             var content = '<div style="width: 100%; height:100%;">' +
-            '<h1>' + uploader + '\'s pic</h1>' + 
+            '<h1>' + pic.uploaderName + '\'s pic</h1>' + 
             '<img style="width: 400px;" src="' + path + '"width>' + 
             '<br>' + pic.picComment + '</div>';
 
