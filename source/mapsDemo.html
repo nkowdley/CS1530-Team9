@@ -3,7 +3,6 @@
  -Make navbar text more readable
  -Include space where selected files name is shown
  -Confirmation for successfull uploaded file
-
 -->
 <html>
 <head>
@@ -17,13 +16,11 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Map Thingy</a>
+                <a class="navbar-brand" href="#">PicChat</a>
             </div>
             
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#about">Link</a></li>
-                    <li><a href="#contact">Another Link</a></li>
                 </ul>
             
                 <form class="navbar-form navbar-right" id="upload-form" name="upload-form" method="post" enctype="multipart/form-data">
@@ -32,9 +29,11 @@
                             Chose File <input type="file" id="myfile" name="myfile" class="btn btn-success"/>
                         </span>
                     </div>
-                     
                     <div class="form-group">
                         Location <input id="address" type="text">
+                    </div>
+                    <div class="form-group">
+                        Comment <input id="comment" type="text">
                     </div>
                     <div class="form-group">
                         <button type="submit" id="file-button" class="btn btn-success" name="submitBtn" value="Upload">Upload</button>

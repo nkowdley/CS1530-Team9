@@ -10,7 +10,7 @@ function gotoMap()
     //Sets zoom and location map initially focused on. API examples defaults as of now
     mapOptions = {
       center: { lat: 40.441983, lng: -79.957351},
-      zoom: 10
+      zoom: 16
     };
     
     //Locally declares a map variable

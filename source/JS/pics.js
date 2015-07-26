@@ -1,3 +1,6 @@
+//Global tracker of info boxes
+var infos = [];
+
 //Listener for form submission
 $("form[name=upload-form]").submit(function(){
     uploadPic($("#myfile").val(), function(){});
@@ -24,45 +27,21 @@ function uploadPic(filename, callback) //callback for testing
             }
             
             //Prepare data and upload
-<<<<<<< HEAD
             //TODO: handle facebook error better. 
             else
             {
                 //Get user Id. Asychronous, so wrap upload in the callback for simple handling
-                getUserId(function(userId)
+                getUser(function(user)
                 { 
                     //Ensure that the facebook request sent a valid returns
-                    if(userId) //TODO: handle better then just if not null
-                    {
-                        //Set user id as local var
-                        console.log("UserId = " + userId);
-=======
-            //TODO: pack in user info and lat/lng of the pic
-            else
-            {
-                //Get and set user info as local vars
-                
-                
-                //Set lng/lat as local vars
-                var lat = coords.lat();
-                var lng = coords.lng();
-                                
-                //Get file from upload form data. This will include the name
-                var files = $('#myfile')[0];               
-                var data = new FormData();                
-                var url =  "PHP/uploadpic.php";
-                var xhr = new XMLHttpRequest();  
-
-                //Add files to dataform 
-                jQuery.each(files.files, function (i, file) {
-                    data.append("myfile", file)
-                });     
-                
-                //Pack lat/lng into dataform
-                data.append("lat", lat);
-                data.append("lng", lng);
->>>>>>> master
+                    if(user) //TODO: handle better then just if not null
+                    {            
+                        //Parse the facebook response
+                        var userInfo = JSON.parse(user);
                         
+                        //Get comment
+                        var comment = document.getElementById("comment").value;
+     
                         //Set lng/lat as local vars
                         var lat = coords.lat();
                         var lng = coords.lng();
@@ -81,7 +60,9 @@ function uploadPic(filename, callback) //callback for testing
                         //Pack lat/lng  and user id into dataform
                         data.append("lat", lat);
                         data.append("lng", lng);
-                        data.append("userId", userId);
+                        data.append("userId", userInfo.id);
+                        data.append("userName", userInfo.first_name + " " +userInfo.last_name);
+                        data.append("comment", comment);
                                 
                         //Using xhr cuase undertermined issue with jquery ajax
                         xhr.open('POST', url, true);                
@@ -91,7 +72,8 @@ function uploadPic(filename, callback) //callback for testing
                         if( this.readyState === 4 ) 
                         {
                             var result = this.responseText;
-                            alert(result); //FOR DEBUG ONLY
+                            //alert(result); //FOR DEBUG ONLY
+                            alert("Uploaded"); 
                             $('#myfile').val(null);
                         }
                         });
@@ -100,7 +82,7 @@ function uploadPic(filename, callback) //callback for testing
                     }
                     
                     else //facebook /me request did not return a valid value
-                        alert("Could not get user ID");
+                        alert("Could not find logged in user");
                 });
             }
         });
@@ -122,11 +104,7 @@ function validateUploadForm(filename)
     }
   
     //If pic not selected, alert and exit.
-<<<<<<< HEAD
     if(filename.lastIndexOf("png") !== filename.length-3) //accepts only png
-=======
-    if(filename.lastIndexOf("png") !== filename.length-3) //Accepts only png
->>>>>>> master
     {
         alert("Must provide .png file to be uploaded");
         return "pic selection failed";
@@ -135,15 +113,9 @@ function validateUploadForm(filename)
     return "success";
 }
 
-<<<<<<< HEAD
 
 //Gets all pic entries from the DB by calling getPics.php
 function getAllPics(callback) //asynchronous
-=======
-//Unimplmented, and may not be used. Possibly just pack the lat/lng into db
-//Embeds the Lat/Lng position got from the google api's into a pics exif tags
-function embedCoords(file, coords)
->>>>>>> master
 {
     //Ajax call to getPics.php
     $.ajax({
@@ -163,6 +135,9 @@ function populateMap() //uses asynchronous calls, but its return shouldn't actua
 {
     //Get list of all pics
     getAllPics(function(pics) { //more asynch hell 
+        //Make array of unique marker names
+        var marker = [];
+        
         //Iterate over list of pics
         for(var i=0; i<pics.length; i++)
         {
@@ -171,31 +146,47 @@ function populateMap() //uses asynchronous calls, but its return shouldn't actua
             //Get attributes from pic
             //**Whats up with relative paths? this file is already in CStest so why need to add?
             var path = "/CStest" + pic.picPath; //THIS IS FOR MY PERSONAL LOCAL HOSTING, NEEDS CHANGED FOR SERVER
-            var uploader = pic.uploaderId;
+            //var path = pic.picPath; 
             
             //Make LatLng obj
             var myLatLng = new google.maps.LatLng(pic.picLat, pic.picLng);
                         
             //Generate infoWindow for pic
-            var infoHtml = '<div style="width: 100%; height:100%;">' +
-            '<img style="width: 400px;" src="' + path + '"width></div>';
-            var infowindow = new google.maps.InfoWindow({
-                content: infoHtml
-            });
-            
+            var content = '<div style="width: 100%; height:100%;">' +
+            '<h1>' + pic.uploaderName + '\'s pic</h1>' + 
+            '<img style="width: 400px;" src="' + path + '"width>' + 
+            '<br>' + pic.picComment + '</div>';
+
+            var infowindow = new google.maps.InfoWindow()
+                        
             //Place marker for pic
-            var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-                title: 'Title'
+            var marker = new google.maps.Marker({  
+                map: map, title: "pic", position: myLatLng  
             });
             
             //Add listener to open window on click
-            google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(map,marker);
-            });
-            
-            
+            google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+                return function() {
+                    //Close the previous info-window 
+                    closeInfos();
+                    
+                    infowindow.setContent(content);
+                    infowindow.open(map,marker);
+                    
+                    //Keep the name to close next
+                    infos[0] = infowindow;
+                };
+            })(marker,content,infowindow));  
         }
     });
+}
+
+//Close info boxes
+function closeInfos(){
+    if(infos.length > 0){
+        //Detach the info-window from the marker .
+        infos[0].set("marker", null);
+        infos[0].close();
+        infos.length = 0;
+    }
 }
