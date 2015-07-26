@@ -1,0 +1,34 @@
+Who are We?
+
+What is our project?
+Blaise Clair (blaiseclair)- Product Owner
+Andrew Harper (graphitezeppelin) – Software Developer
+Neel Kowdley (nkowdley) - Software Developer
+Dom Grigore (domgrigore) - Quality Assurance Manager
+
+Name of Project: PicChat
+
+Creating a map-centric social media platform. A user will log in, and be able to create posts and content by providing a location and the content itself.
+The content will then be place on a map, so that other users can view activities and posts at a specific location and be able to find activities to do at certain locations.
+
+Project Github Page: https://github.com/nkowdley/CS1530-Team9
+
+DEMO!
+
+Process:
+Before we assigned tasks for each sprint, we met with the client to show them our progress and repriortize the backlog.
+We then met as a group and selected backlog items for the current sprint, and then divided them up.
+Each Sprint, we assigned tasks and ensured that we could work on them fairly independently.
+After we completed our tasks, we met up and did in person code reviews.
+We also ran our tests again to ensure nothing major broke between sprints.
+
+Major Challenges:
+1)Technical Debt
+a)PHP
+b)JS
+c)Maps API
+d)MySQL
+
+Scope was too large to be completed in the right amount of time.  In most cases we cut down on scope to increase quality. IRON TRIANGLE
+Local Host/API keys->had different set ups
+File IO stuff
