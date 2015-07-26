@@ -21,6 +21,7 @@
         $lat = $_POST["lat"];
         $lng = $_POST["lng"];
         $userId = $_POST["userId"];
+        $comment = $_POST["comment"];
         
         //Instanstiate the db
         $db = new mysqli('localhost', 'user', 'password', 'db');
@@ -28,7 +29,7 @@
             die ("Could not connect to db: " . $db->connect_error);
         
         //Add the file as a db entry
-        $db->query("INSERT INTO Pics (uploaderId, picLat, picLng, picPath) VALUES('$userId', '$lat', '$lng', '$target_path')") or die ("Invalid: " . $db->error); //test post
+        $db->query("INSERT INTO Pics (uploaderId, picLat, picLng, picPath, picComment) VALUES('$userId', '$lat', '$lng', '$target_path', '$comment')") or die ("Invalid: " . $db->error); //test post
 
         //Close DB
         $db->close();

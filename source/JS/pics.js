@@ -35,9 +35,9 @@ function uploadPic(filename, callback) //callback for testing
                 { 
                     //Ensure that the facebook request sent a valid returns
                     if(userId) //TODO: handle better then just if not null
-                    {
-                        //Set user id as local var
-                        console.log("UserId = " + userId);
+                    {                       
+                        //Get comment
+                        var comment = document.getElementById("comment").value;
      
                         //Set lng/lat as local vars
                         var lat = coords.lat();
@@ -58,6 +58,7 @@ function uploadPic(filename, callback) //callback for testing
                         data.append("lat", lat);
                         data.append("lng", lng);
                         data.append("userId", userId);
+                        data.append("comment", comment);
                                 
                         //Using xhr cuase undertermined issue with jquery ajax
                         xhr.open('POST', url, true);                
@@ -67,7 +68,7 @@ function uploadPic(filename, callback) //callback for testing
                         if( this.readyState === 4 ) 
                         {
                             var result = this.responseText;
-                            //alert(result); //FOR DEBUG ONLY
+                            alert(result); //FOR DEBUG ONLY
                             alert("Uploaded"); 
                             $('#myfile').val(null);
                         }
